@@ -1,10 +1,10 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
 
-<%= link_to "Signout", destroy_user_session_path, method: :delete %><br><br>
+
 
 <% @users.each do |user| %>
   <div>
-    <%= user.email %>
+    <%= link_to user.email %>
   </div>
 <% end %>
