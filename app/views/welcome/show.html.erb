@@ -1,0 +1,11 @@
+<h1>Welcome#show</h1>
+<p>Find me in app/views/welcome/show.html.erb</p>
+
+<% if @user.identity %>
+  <%= image_tag(@user.identity.image) %><br>
+<% end %>
+<strong><%= @user.name ||= @user.identity.name %></strong><br>
+<%= @user.phone %>
+<%= @user.email %> <%= link_to "Edit", edit_welcome_path(@user) if @user == current_user || current_user.email == "zach.newburgh@gmail.com" %><br>
+<em><%= @user.created_at.strftime("Joined on %B %d, %Y") %></em>
+

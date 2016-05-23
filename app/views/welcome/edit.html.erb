@@ -1,0 +1,48 @@
+<h1>Welcome#edit</h1>
+<p>Find me in app/views/welcome/edit.html.erb</p>
+
+<% if @user.identity %>
+  <%= image_tag(@user.identity.image) %><br>
+<% end %>
+
+<%= form_for welcome_path(@user) do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div> 
+    <%= f.label :phone %>
+    <%= f.text_field :phone %><br>
+  </div>
+
+  <% if current_user.email == "zach.newburgh@gmail.com" %>
+    <div>
+      <%= f.radio_button :role, 'manager' %> 
+      <%= label :role, 'Manager' %>
+      <%= f.radio_button :role, 'counter' %>
+      <%= label :role, 'Counter' %>
+      <%= f.radio_button :role, 'busser' %>
+      <%= label :role, 'Busser' %>
+    </div>
+
+    <div>
+      <%= f.radio_button :rating, 'high' %> 
+      <%= label :rating, 'High' %>
+      <%= f.radio_button :rating, 'medium' %>
+      <%= label :rating, 'Medium' %>
+      <%= f.radio_button :rating, 'low' %>
+      <%= label :rating, 'Low' %>
+    </div>
+  <% end %>
+
+  <div>
+  <%= f.submit "Update" %>
+  </div>
+<% end %>
+  
+
+
+
+
+

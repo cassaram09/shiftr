@@ -3,13 +3,15 @@ class WelcomeController < ApplicationController
   
   def index
     @users = User.all
-    # @admin ||= nil
   end
 
-  def create
-    @admin = params[:admin]
-    flash[:notice] = @admin
-    redirect_to welcome_index_url
+  def show
+    @user = User.find_by(params[:user])
+  end
+
+  def edit
+    @user = User.find_by(params[:user])
+    
   end
 
 end

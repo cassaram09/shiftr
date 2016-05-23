@@ -48,10 +48,6 @@ ActiveRecord::Schema.define(version: 20160523132827) do
     t.string   "uid"
     t.string   "name"
     t.string   "phone"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
