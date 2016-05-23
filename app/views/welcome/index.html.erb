@@ -3,10 +3,10 @@
 
 <% @users.each do |user| %>
   <div>
-    <%= link_to image_tag(user.identity.image) %><br>
-    <%= user.identity.name %><br>
-    <%= user.identity.phone ? user.identity.phone + "\n" : nil %>
-    <%= user.identity.email ? user.identity.email + "\n" : nil %>
+    <%= link_to image_tag(user.identity.image) unless !user.identity.image %><br>
+    <%= user.name ||= user.identity.name %>
+    <%= user.phone ||= user.identity.phone unless !user.identity.phone %>
+    <%= user.email ||= user.identity.email %>
     
     <% if current_user.email == "zach.newburgh@gmail.com" || current_user.identity.email == "zach.newburgh@gmail.com" %>
       <%= form_for :user do |f| %>
