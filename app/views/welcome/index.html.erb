@@ -1,14 +1,6 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
 
-<% puts flash[:notice] ? flash[:notice] : nil %>
-
-  <%= form_tag("/welcome", method: "post") do %>
-    <%= label_tag :admin, "Admin Password:" %>
-    <%= text_field_tag(:admin) %>
-    <%= submit_tag("Submit") %>
-  <% end %><br>
-
 <% @users.each do |user| %>
   <div>
     <%= link_to image_tag(user.identity.image) %><br>
@@ -16,24 +8,25 @@
     <%= user.identity.phone ? user.identity.phone + "\n" : nil %>
     <%= user.identity.email ? user.identity.email + "\n" : nil %>
     
-    <%= form_for :user do |f| %>
+    <% if current_user.email == "zach.newburgh@gmail.com" || current_user.identity.email == "zach.newburgh@gmail.com" %>
+      <%= form_for :user do |f| %>
 
-      <%= f.radio_button :role, 'manager' %> 
-      <%= label :role, 'Manager' %>
-      <%= f.radio_button :role, 'counter' %>
-      <%= label :role, 'Counter' %>
-      <%= f.radio_button :role, 'busser' %>
-      <%= label :role, 'Busser' %><br>
+        <%= f.radio_button :role, 'manager' %> 
+        <%= label :role, 'Manager' %>
+        <%= f.radio_button :role, 'counter' %>
+        <%= label :role, 'Counter' %>
+        <%= f.radio_button :role, 'busser' %>
+        <%= label :role, 'Busser' %><br>
 
-      <%= f.radio_button :performance, 'high' %> 
-      <%= label :performance, 'High' %>
-      <%= f.radio_button :performance, 'medium' %>
-      <%= label :performance, 'Medium' %>
-      <%= f.radio_button :performance, 'low' %>
-      <%= label :performance, 'Low' %><br>
-
-      <%= f.submit "Update" %>
-    <% end %>
+        <%= f.radio_button :performance, 'high' %> 
+        <%= label :performance, 'High' %>
+        <%= f.radio_button :performance, 'medium' %>
+        <%= label :performance, 'Medium' %>
+        <%= f.radio_button :performance, 'low' %>
+        <%= label :performance, 'Low' %><br>
+        <%= f.submit "Update" %>
+      <% end %>
+  <% end %>
 
   </div>
 <% end %>
