@@ -3,12 +3,15 @@
 
 <% @users.each do |user| %>
   <div>
-    <%= link_to image_tag(user.identity.image) unless !user.identity.image %><br>
-    <%= user.name ||= user.identity.name %><br>
-    <%= user.phone ||= user.identity.phone %><br>
-    <%= user.email ||= user.identity.email %><br>
-    
-    <% if current_user.email == "zach.newburgh@gmail.com" || current_user.identity.email == "zach.newburgh@gmail.com" %>
+    <% if user.identity %>
+      <% image_tag("#{user.identity.image}") %>
+    <% end %>
+
+    <%= user.name %><br>
+    <%= user.phone.to_s + "\n" unless user.phone == nil %>
+    <%= user.email %><br>
+
+    <% if current_user.email == "zach.newburgh@gmail.com" %>
       <%= form_for :user do |f| %>
 
         <%= f.radio_button :role, 'manager' %> 
