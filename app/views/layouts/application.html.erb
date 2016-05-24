@@ -7,9 +7,11 @@
   <%= csrf_meta_tags %>
   
   <% if user_signed_in? %>
-    <%= link_to "Home", users_path unless !current_user %><br>
+    <%= link_to "Home", users_path %><br>
     <%= link_to "Profile", user_path(current_user) %><br>
-    <%= link_to "Schedule", schedule_index_path %><br>
+    <% if current_user.email == "zach.newburgh@gmail.com" %>
+      <%= link_to "Shifts", shifts_path %><br>
+    <% end %>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
   <% end %>
 

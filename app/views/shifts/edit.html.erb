@@ -1,2 +1,27 @@
 <h1>Shifts#edit</h1>
 <p>Find me in app/views/shifts/edit.html.erb</p>
+
+<%= form_for @shift do |f| %>
+
+  <div>
+    <%= f.label :day, "Day:" %>
+    <%= f.select :day, [ 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ], :prompt => '' %><br><br>
+  </div>
+
+  <div>
+    <%= f.label :role, "Type:" %>
+    <%= f.select :role, [ 'Manager','Counter','Busser' ], :prompt => '' %><br><br>
+  </div>
+
+  <div>
+    <%= f.label :time, "Time:" %>
+    <%= f.text_field :time %><br><br>
+  </div>
+
+  <div>
+    <%= f.label :staff, "Staff needed:" %>
+    <%= f.number_field :staff, style: 'width: 25px' %><br><br>
+  </div>
+
+  <%= f.submit %>
+<% end %>
