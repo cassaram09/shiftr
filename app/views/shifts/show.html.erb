@@ -1,9 +1,11 @@
 <h1>Shifts#show</h1>
 <p>Find me in app/views/shifts/show.html.erb</p>
 
+<%= link_to "Add Shift", new_shift_path %><br><br>
+
 <strong><%= @shift.day %></strong><br>
 <u><%= @shift.role %></u><br>
 Time: <%= @shift.time %><br>
 Staff Needed: <%= @shift.staff %><br>
-<%= link_to "Edit Shift", edit_shift_path(@shift) %><br>
+<%= link_to "Edit Shift", edit_shift_path(@shift) %> | 
 <%= link_to "Delete Shift", @shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
