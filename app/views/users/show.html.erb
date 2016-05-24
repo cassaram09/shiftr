@@ -13,8 +13,10 @@
   <%= "#{@user.role.capitalize}" %><br>
 <% end %>
 
-<% if @user.phone != nil %>
-  <%= @user.phone %><br>
+<% if @user.phone == nil || @user.phone == "" %>
+  <%= "=> click 'Edit' below to provide phone number." %><br>
+<% else %>
+  <%= number_to_phone(@user.phone.gsub(/[()-]/,"").to_i, area_code: true) %><br>
 <% end %>
 
 <%= @user.email %><br>

@@ -16,7 +16,7 @@
     <%= user.email %><br>
 
     <% if user.phone != nil %>
-      <%= user.phone %><br>
+      <%= number_to_phone(user.phone.gsub(/[()-]/,"").to_i, area_code: true) %><br>
     <% end %>
 
     <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em>
