@@ -8,11 +8,21 @@
     <% end %>
 
     <strong><%= link_to "#{user.name ||= user.identity.name}\n", user_path(user.id) %></strong><br>
+    
+    <% if user.role != nil %>
+      <%= "#{user.role.capitalize}" %><br>
+    <% end %>
+
     <%= user.email %><br>
+
+    <% if user.phone != nil %>
+      <%= user.phone %><br>
+    <% end %>
+
     <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em>
 
     <% if current_user.email == "zach.newburgh@gmail.com" %>
-      <%= form_for :user, method: :patch do |f| %>
+      <%= form_for user, method: :patch do |f| %>
 
         <%= f.radio_button :role, 'manager' %> 
         <%= label :role, 'Manager' %>
@@ -29,7 +39,9 @@
         <%= label :rating, 'Low' %><br>
         <%= f.submit "Update" %>
       <% end %><br>
-  <% end %>
+    <% else %>
+      <br><br>
+    <% end %>
 
   </div>
 <% end %>

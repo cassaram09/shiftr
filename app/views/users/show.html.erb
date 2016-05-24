@@ -6,8 +6,17 @@
 <% if @user.identity %>
   <%= image_tag(@user.identity.image) %><br>
 <% end %>
+
 <strong><%= @user.name ||= @user.identity.name %></strong><br>
-<%= @user.phone %>
+
+<% if @user.role != nil %>
+  <%= "#{@user.role.capitalize}" %><br>
+<% end %>
+
+<% if @user.phone != nil %>
+  <%= @user.phone %><br>
+<% end %>
+
 <%= @user.email %><br>
 <em><%= @user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 <%= link_to "Edit", edit_user_path(@user) if @user == current_user || current_user.email == "zach.newburgh@gmail.com" %><br>

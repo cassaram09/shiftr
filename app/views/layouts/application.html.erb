@@ -10,8 +10,6 @@
     <%= link_to "Home", users_path unless !current_user %><br>
     <%= link_to "Profile", user_path(current_user) %><br>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  <% else %>
-    <%= link_to('Login', new_user_session_path)  %>  
   <% end %>
 
 </head>
