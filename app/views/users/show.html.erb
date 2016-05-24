@@ -1,24 +1,22 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
-<% flash[:success] ? "#{flash[:success]} \n" : nil  %>
-
-<% if @user.identity %>
-  <%= image_tag(@user.identity.image) %><br>
+<% if @user.avatar_file_name != nil %>
+  <%= image_tag(@user.avatar.url, size: "200x200") %><br>
+<% elsif @user.identity %>
+  <%= image_tag(@user.identity.image, size: "200x200") %><br>
 <% end %>
 
-<strong><%= @user.name ||= @user.identity.name %></strong><br>
+<strong><%= @user.name + ", #{@user.role.capitalize unless @user.role == nil}" %></strong><br>
 
-<% if @user.role != nil %>
-  <%= "#{@user.role.capitalize}" %><br>
-<% end %>
+<em><%= @user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 
 <% if @user.phone == nil || @user.phone == "" %>
-  <%= "=> click 'Edit' below to provide phone number." %><br>
+  <%= "=> click 'Edit' below to provide phone number." %>
 <% else %>
-  <%= number_to_phone(@user.phone.gsub(/[()-]/,"").to_i, area_code: true) %><br>
+  <%= number_to_phone(@user.phone.gsub(/[()-]/,"").to_i, area_code: true) %>
 <% end %>
 
-<%= @user.email %><br>
-<em><%= @user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
-<%= link_to "Edit", edit_user_path(@user) if @user == current_user || current_user.email == "zach.newburgh@gmail.com" %><br>
+| <%= @user.email %><br>
+
+<%= link_to "Edit Profile", edit_user_path(@user) if @user.email == current_user.email || current_user.email == "zach.newburgh@gmail.com" %><br>

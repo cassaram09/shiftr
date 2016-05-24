@@ -2,24 +2,24 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 <% @users.sort_by {|k,v| k[:email]}.each do |user| %>
+
   <div>
-    <% if user.identity %>
-      <%= link_to image_tag(user.identity.image), user_path(user) %><br>
+    <% if user.avatar_file_name != nil %>
+      <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
+    <% elsif user.identity %>
+      <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
     <% end %>
 
-    <strong><%= link_to "#{user.name ||= user.identity.name}\n", user_path(user.id) %></strong><br>
-    
-    <% if user.role != nil %>
-      <%= "#{user.role.capitalize}" %><br>
-    <% end %>
+    <strong><%= link_to user.name + ", #{user.role.capitalize unless user.role == nil}", user_path(user.id) %></strong><br>
 
-    <%= user.email %><br>
+    <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
+
 
     <% if user.phone != nil %>
-      <%= number_to_phone(user.phone.gsub(/[()-]/,"").to_i, area_code: true) %><br>
+      <%= number_to_phone(user.phone.gsub(/[()-]/,"").to_i, area_code: true) %>
     <% end %>
 
-    <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em>
+    | <%= user.email %><br>
 
     <% if current_user.email == "zach.newburgh@gmail.com" %>
       <%= form_for user, method: :patch do |f| %>
@@ -37,7 +37,7 @@
         <%= label :rating, 'Medium' %>
         <%= f.radio_button :rating, 'low' %>
         <%= label :rating, 'Low' %><br>
-        <%= f.submit "Update" %>
+        <%= f.submit "Save changes" %>
       <% end %><br>
     <% else %>
       <br><br>

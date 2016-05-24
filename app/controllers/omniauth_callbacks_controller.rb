@@ -30,7 +30,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.email.blank? && @identity.email
       @user.update_attribute( :email, @identity.email )
       @user.update_attribute( :name, @identity.name )
-      @user.update_attribute( :image_file_name, @identity.image )
+      @user.update_attribute( :avatar, @identity.image )
     end
     if @user.persisted?
       @identity.update_attribute( :user_id, @user.id )
