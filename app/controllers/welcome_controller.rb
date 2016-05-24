@@ -6,11 +6,11 @@ class WelcomeController < ApplicationController
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
   end
 
   def edit
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
   end
 
 end
