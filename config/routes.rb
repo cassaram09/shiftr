@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'shifts/index'
+
+  get 'shifts/new'
+
+  get 'shifts/create'
+
+  get 'shifts/show'
+
+  get 'shifts/edit'
+
+  get 'shifts/update'
+
+  get 'shifts/destroy'
+
   devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
   resources :users
   post 'users/:id/edit' => 'users#edit'
