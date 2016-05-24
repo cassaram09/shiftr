@@ -5,14 +5,19 @@
   <%= image_tag(@user.identity.image) %><br>
 <% end %>
 
-<%= form_for welcome_path(@user) do |f| %>
+<%= form_for welcome_path(@user, url: { action: 'update', id: @user.id}) do |f| %>
+  <div> 
+    <%= f.label :image, "Profile Picture:" %>
+    <%= f.file_field :image %><br>
+  </div>
+
   <div>
-    <%= f.label :name %>
+    <%= f.label :name, "Name:" %>
     <%= f.text_field :name %>
   </div>
 
   <div> 
-    <%= f.label :phone %>
+    <%= f.label :phone, "Phone:" %>
     <%= f.text_field :phone %><br>
   </div>
 
