@@ -1,6 +1,8 @@
 <h1>Welcome#show</h1>
 <p>Find me in app/views/welcome/show.html.erb</p>
 
+<% flash[:success] ? "#{flash[:success]} \n" : nil  %>
+
 <% if @user.identity %>
   <%= image_tag(@user.identity.image) %><br>
 <% end %>

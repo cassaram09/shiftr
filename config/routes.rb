@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :welcome
+  post 'welcome/:id/edit' => 'welcome#edit'
+
   root 'welcome#index'
   
 devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}

@@ -7,7 +7,7 @@
       <%= link_to image_tag(user.identity.image), welcome_path(user) %><br>
     <% end %>
 
-    <strong><%= link_to "#{user.name ||= user.identity.name}\n", welcome_path(user.id) %></strong> <%= user.id %><br>
+    <strong><%= link_to "#{user.name ||= user.identity.name}\n", welcome_path(user.id) %></strong><br>
     <%= user.email %><br>
     <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em>
 
