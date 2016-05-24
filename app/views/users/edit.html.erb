@@ -29,6 +29,14 @@
   </div>
 
   <% if current_user.email == "zach.newburgh@gmail.com" %>
+    
+    <div>
+      <%= f.radio_button :gender, 'm' %> 
+      <%= label :gender, 'Man' %>
+      <%= f.radio_button :gender, 'w' %>
+      <%= label :gender, 'Woman' %>
+    </div>
+    
     <div>
       <%= f.radio_button :role, 'manager' %> 
       <%= label :role, 'Manager' %>

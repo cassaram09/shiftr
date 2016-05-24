@@ -1,8 +1,7 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
 
-<% @users.sort_by {|k,v| k[:email]}.each do |user| %>
-
+<% @users.sort_by {|k,v| k[:role]}.reverse.each do |user| %>
   <div>
     <% if user.avatar_file_name != nil %>
       <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
@@ -10,7 +9,7 @@
       <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
     <% end %>
 
-    <strong><%= link_to user.name + ", #{user.role.capitalize unless user.role == nil}", user_path(user.id) %></strong><br>
+    <strong><%= link_to user.name + "#{', ' + user.role.to_s.capitalize unless user.role == nil}", user_path(user.id) %></strong><br>
 
     <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 
@@ -22,7 +21,12 @@
     | <%= user.email %><br>
 
     <% if current_user.email == "zach.newburgh@gmail.com" %>
-      <%= form_for user, method: :patch do |f| %>
+      <%= form_for(user) do |f| %>
+
+        <%= f.radio_button :gender, 'm' %> 
+        <%= label :gender, 'Man' %>
+        <%= f.radio_button :gender, 'w' %>
+        <%= label :gender, 'Woman' %><br>
 
         <%= f.radio_button :role, 'manager' %> 
         <%= label :role, 'Manager' %>
