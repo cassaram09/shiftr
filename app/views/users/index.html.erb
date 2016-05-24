@@ -1,13 +1,13 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
 
 <% @users.sort_by {|k,v| k[:email]}.each do |user| %>
   <div>
     <% if user.identity %>
-      <%= link_to image_tag(user.identity.image), welcome_path(user) %><br>
+      <%= link_to image_tag(user.identity.image), user_path(user) %><br>
     <% end %>
 
-    <strong><%= link_to "#{user.name ||= user.identity.name}\n", welcome_path(user.id) %></strong><br>
+    <strong><%= link_to "#{user.name ||= user.identity.name}\n", user_path(user.id) %></strong><br>
     <%= user.email %><br>
     <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em>
 

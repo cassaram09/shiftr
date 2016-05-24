@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :welcome
-  post 'welcome/:id/edit' => 'welcome#edit'
+  devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+  resources :users
+  post 'users/:id/edit' => 'users#edit'
 
-  root 'welcome#index'
+  root 'users#index'
   
-devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
