@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524212505) do
+ActiveRecord::Schema.define(version: 20160525011654) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,13 +31,18 @@ ActiveRecord::Schema.define(version: 20160524212505) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
+  create_table "scheduled_shifts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "shift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id"
 
   create_table "shifts", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160524212505) do
     t.string   "uid"
     t.string   "name"
     t.string   "phone"
-    t.string   "role"
+    t.string   "role",                   default: ""
     t.string   "rating"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
