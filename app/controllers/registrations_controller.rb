@@ -3,10 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     if resource.encrypted_password.blank? # || params[:password].blank?
       resource.email = params[:email] if params[:email]
-      resource.email = params[:name] if params[:name] ## IS THIS RIGHT?
       if !params[:password].blank? && params[:password] == params[:password_confirmation]
         logger.info "Updating password"
-        resource.email = params[:name] if params[:name] ## IS THIS RIGHT?
         resource.password = params[:password]
         resource.save
       end

@@ -29,12 +29,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     if @user.email.blank? && @identity.email
       @user.update_attribute( :email, @identity.email )
-      @user.update_attribute( :name, @identity.name )
-      @user.update_attribute( :avatar, @identity.image )
     end
     if @user.persisted?
       @identity.update_attribute( :user_id, @user.id )
-
+      @user.update_attribute( :name, @identity.name )
+      @user.update_attribute( :phone, @identity.phone )
+      # @user.update_attribute( :avatar, @identity.image )
+      @user.save
       @user = FormUser.find @user.id
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
