@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
   resources :users
   resources :shifts
+  resources :schedules
   post 'users/:id/edit' => 'users#edit'
 
   root 'users#index'
