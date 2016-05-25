@@ -25,10 +25,12 @@
 
   <div> 
     <%= f.label :email, "Email:" %>
-    <%= f.text_field :email %><br>
+    <%= f.text_field :email %><br><br>
   </div>
 
   <% if current_user.email == "zach.newburgh@gmail.com" %>
+
+    <strong>Admin Panel</strong>
     
     <div>
       <%= f.radio_button :gender, 'm' %> 
@@ -38,11 +40,11 @@
     </div>
     
     <div>
-      <%= f.radio_button :role, 'manager' %> 
+      <%= f.radio_button :role, 'Manager' %> 
       <%= label :role, 'Manager' %>
-      <%= f.radio_button :role, 'counter' %>
+      <%= f.radio_button :role, 'Counter' %>
       <%= label :role, 'Counter' %>
-      <%= f.radio_button :role, 'busser' %>
+      <%= f.radio_button :role, 'Busser' %>
       <%= label :role, 'Busser' %>
     </div>
 
@@ -52,7 +54,7 @@
       <%= f.radio_button :rating, 'medium' %>
       <%= label :rating, 'Medium' %>
       <%= f.radio_button :rating, 'low' %>
-      <%= label :rating, 'Low' %>
+      <%= label :rating, 'Low' %><br><br>
     </div>
   <% end %>
 

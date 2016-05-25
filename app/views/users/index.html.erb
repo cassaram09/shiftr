@@ -2,6 +2,7 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 <% @users.sort_by {|k,v| k[:role]}.reverse.each do |user| %>
+
   <div>
     <% if user.avatar_file_name != nil %>
       <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
@@ -19,9 +20,14 @@
       <%= number_to_phone(user.phone.gsub(/[()-]/,"").to_i, area_code: true) %>
     <% end %>
 
-    | <%= user.email %><br>
+    | <%= user.email %><br><br>
+
+    <%= user.m_schedule %>
 
     <% if current_user.email == "zach.newburgh@gmail.com" %>
+
+      <strong>Admin Panel</strong>
+
       <%= form_for(user) do |f| %>
 
         <%= f.radio_button :gender, 'm' %> 
@@ -29,11 +35,11 @@
         <%= f.radio_button :gender, 'w' %>
         <%= label :gender, 'Woman' %><br>
 
-        <%= f.radio_button :role, 'manager' %> 
+        <%= f.radio_button :role, 'Manager' %> 
         <%= label :role, 'Manager' %>
-        <%= f.radio_button :role, 'counter' %>
+        <%= f.radio_button :role, 'Counter' %>
         <%= label :role, 'Counter' %>
-        <%= f.radio_button :role, 'busser' %>
+        <%= f.radio_button :role, 'Busser' %>
         <%= label :role, 'Busser' %><br>
 
         <%= f.radio_button :rating, 'high' %> 
@@ -41,8 +47,65 @@
         <%= f.radio_button :rating, 'medium' %>
         <%= label :rating, 'Medium' %>
         <%= f.radio_button :rating, 'low' %>
-        <%= label :rating, 'Low' %><br>
-        <%= f.submit "Save changes" %>
+        <%= label :rating, 'Low' %><br><br>
+
+        <u>Monday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Monday" %>
+            <%= f.check_box :m_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Tuesday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Tuesday" && shift.role == user.role %>
+            <%= f.check_box :t_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Wednesday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Wednesday" %>
+            <%= f.check_box :w_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Thursday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Thursday" %>
+            <%= f.check_box :t_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Friday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Friday" %>
+            <%= f.check_box :f_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Saturday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Saturday" %>
+            <%= f.check_box :s_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <u>Sunday</u><br>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == "Sunday" %>
+            <%= f.check_box :d_schedule, {},"#{shift.day}: #{shift.time}", nil %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
+          <% end %><br>
+        <% end %>
+
+        <br><%= f.submit "Save changes" %>
       <% end %><br>
     <% else %>
       <br><br>

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @shifts = Shift.all
   end
 
   def show
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :role, :rating, :avatar, :gender)
+      params.require(:user).permit(:name, :email, :phone, :role, :rating, :avatar, :gender, :schedule)
     end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525011654) do
+ActiveRecord::Schema.define(version: 20160525185612) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 20160525011654) do
   create_table "scheduled_shifts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "shift_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,6 +72,13 @@ ActiveRecord::Schema.define(version: 20160525011654) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "gender"
+    t.string   "m_schedule"
+    t.string   "t_schedule"
+    t.string   "w_schedule"
+    t.string   "r_schedule"
+    t.string   "f_schedule"
+    t.string   "s_schedule"
+    t.string   "d_schedule"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -7,35 +7,68 @@
 <h3>Manager</h3>
 <% @shifts.each do |shift| %>
   <% if shift.day == "Monday" && shift.role == "Manager" %>
-      <strong><%= shift.time %></strong><br>
-      Staff needed: <%= shift.staff %><br>
-      <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-      <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
-    <% else %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
   <% end %>
 <% end %>
 
 <h3>Counter</h3>
 <% @shifts.each do |shift| %>
   <% if shift.day == "Monday" && shift.role == "Counter" %>
-      <strong><%= shift.time %></strong><br>
-      Staff needed: <%= shift.staff %><br>
-      <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-      <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
-    <% else %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
   <% end %>
 <% end %>
 
 <h3>Busser</h3>
 <% @shifts.each do |shift| %>
   <% if shift.day == "Monday" && shift.role == "Busser" %>
-      <strong><%= shift.time %></strong><br>
-      Staff needed: <%= shift.staff %><br>
-      <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-      <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
-    <% else %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
   <% end %>
 <% end %>
 
+<h2>Tuesday</h2>
+<h3>Manager</h3>
+<% @shifts.each do |shift| %>
+  <% if shift.day == "Tuesday" && shift.role == "Manager" %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
+  <% end %>
+<% end %>
+
+<h3>Counter</h3>
+<% @shifts.each do |shift| %>
+  <% if shift.day == "Tuesday" && shift.role == "Counter" %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
+  <% end %>
+<% end %>
+
+<h3>Busser</h3>
+<% @shifts.each do |shift| %>
+  <% if shift.day == "Tuesday" && shift.role == "Busser" %>
+    <strong><%= shift.time %></strong><br>
+    Staff needed: <%= shift.staff %><br>
+    <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+    <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <% else %>
+  <% end %>
+<% end %>
 
 

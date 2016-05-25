@@ -4,7 +4,7 @@
 <%= link_to "Add Shift", new_shift_path %><br><br>
 
 <strong><%= @shift.day %></strong><br>
-<u><%= @shift.role %></u><br>
+<u><%= @shift.role.capitalize %></u><br>
 Time: <%= @shift.time %><br>
 Staff Needed: <%= @shift.staff %><br>
 <%= link_to "Edit Shift", edit_shift_path(@shift) %> | 
