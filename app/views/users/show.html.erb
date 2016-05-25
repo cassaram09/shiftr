@@ -12,7 +12,7 @@
 <em><%= @user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 
 <% if @user.phone == nil || @user.phone == "" %>
-  <%= "[ADD PHONE]" %>
+  <%= link_to "[ADD PHONE]", edit_user_path(@user) %>
 <% else %>
   <%= number_to_phone(@user.phone.gsub(/[()-]/,"").to_i, area_code: true) %>
 <% end %>
