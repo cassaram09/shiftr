@@ -33,7 +33,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       @identity.update_attribute( :user_id, @user.id )
       @user.update_attribute( :name, @identity.name )
-      @user.update_attribute( :phone, @identity.phone )
+      # @user.update_attribute( :phone, @identity.phone )
       # @user.update_attribute( :avatar, @identity.image )
       @user.save
       @user = FormUser.find @user.id
