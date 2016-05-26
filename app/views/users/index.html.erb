@@ -4,53 +4,9 @@
 <% @users.sort_by {|k,v| k[:role]}.reverse.each do |user| %>
 
   <div>
-    <% if user.avatar_file_name != nil %>
-      <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
-    <% elsif user.identity %>
-      <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
-    <% end %>
-
-    <strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong><br>
-
-    <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
-
-    <% if user.phone == nil || user.phone == "" %>
-      <%= link_to "[ADD PHONE]", edit_user_path(user) %>
-    <% else %>
-      <%= number_to_phone(user.phone.gsub(/[()-]/,"").to_i, area_code: true) %>
-    <% end %>
-
-    | <%= user.email %><br><br>
-
-    <strong>Schedule</strong><br>
-    <% if user.m_schedule %>
-      <%= user.m_schedule %><br><br>
-    <% end %>
-
-    <% if user.t_schedule %>
-      <%= user.t_schedule %><br><br>
-    <% end %>
-
-    <% if user.w_schedule %>
-      <%= user.w_schedule %><br><br>
-    <% end %>
-
-    <% if user.r_schedule %>
-      <%= user.r_schedule %><br><br>
-    <% end %>
-
-    <% if user.f_schedule %>
-      <%= user.f_schedule %><br><br>
-    <% end %>
-
-    <% if user.s_schedule %>
-      <%= user.s_schedule %><br><br>
-    <% end %>
-
-    <% if user.d_schedule %>
-      <%= user.d_schedule %><br><br>
-    <% end %>
     
+    <%= render partial: "display", locals: {user: user} %>
+
     <%= render partial: "admin", locals: {user: user} %>
 
   </div>
