@@ -28,9 +28,7 @@
     <%= f.text_field :email %><br><br>
   </div>
 
-  <%= render partial: "admin", locals: {user: @user} %>
-
-  <%= f.submit "Update Profile" unless current_user.email == "zach.newburgh@gmail.com" %> 
+  <%= f.submit "Update Profile" %> 
 
 <% end %>
   

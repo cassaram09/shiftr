@@ -1,5 +1,5 @@
-<% if current_user.email == "zach.newburgh@gmail.com" %>  
-  <strong>Admin Panel</strong><br>
+<% if admin %>  
+  <br><strong>Admin Panel</strong><br>
 
   <%= form_for(user) do |f| %>
 
