@@ -4,7 +4,7 @@
   <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
 <% end %>
 
-<strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong><br>
+<strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit profile)", edit_user_path(user) if user.email == current_user.email || current_user.email == "zach.newburgh@gmail.com" %><br>
 
 <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 

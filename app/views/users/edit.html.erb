@@ -30,7 +30,7 @@
 
   <%= render partial: "admin", locals: {user: @user} %>
 
-  <%= f.submit %>
+  <%= f.submit "Update Profile" unless current_user.email == "zach.newburgh@gmail.com" %> 
 
 <% end %>
   

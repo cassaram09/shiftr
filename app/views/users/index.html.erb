@@ -4,10 +4,14 @@
 <% @users.sort_by {|k,v| k[:role]}.reverse.each do |user| %>
 
   <div>
-    
+        
     <%= render partial: "display", locals: {user: user} %>
 
     <%= render partial: "admin", locals: {user: user} %>
 
+    <%= render partial: "admin_shift", locals: {user: user} %>
+
   </div>
 <% end %>
+
+<%= current_uri = request.env['PATH_INFO'] %>

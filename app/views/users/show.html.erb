@@ -2,7 +2,3 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <%= render partial: "display", locals: {user: @user} %>
-
-<%= link_to "Edit Profile", edit_user_path(@user) if @user.email == current_user.email || current_user.email == "zach.newburgh@gmail.com" %><br><br>
-
-<%= render partial: "admin", locals: {user: @user} %>

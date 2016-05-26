@@ -1,5 +1,5 @@
 <% if current_user.email == "zach.newburgh@gmail.com" %>  
-  <strong>Admin Panel</strong>
+  <strong>Admin Panel</strong><br>
 
   <%= form_for(user) do |f| %>
 
@@ -20,19 +20,7 @@
     <%= f.radio_button :rating, 'medium' %>
     <%= label :rating, 'Medium' %>
     <%= f.radio_button :rating, 'low' %>
-    <%= label :rating, 'Low' %><br><br>
-
-    <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
-      <% if @shifts.map {|shift| shift.day unless shift.day != weekday || shift.role != user.role}.include?(weekday) %>
-          <br><u><%= weekday %></u>
-        <% @shifts.each do |shift| %>
-          <% if shift.day == weekday && shift.role == user.role %>
-            <br><%= f.check_box (weekday.downcase[0] + "_schedule").to_s, {},"#{shift.day}: #{shift.time}", "" %>
-            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %><br>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= label :rating, 'Low' %>
 
     <br><%= f.submit "Save changes" %>
   <% end %><br>
