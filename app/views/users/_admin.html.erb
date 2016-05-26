@@ -22,64 +22,19 @@
     <%= f.radio_button :rating, 'low' %>
     <%= label :rating, 'Low' %><br><br>
 
-    <u>Monday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Monday" %>
-        <%= f.check_box :m_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Tuesday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Tuesday" && shift.role == user.role %>
-        <%= f.check_box :t_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Wednesday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Wednesday" %>
-        <%= f.check_box :w_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Thursday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Thursday" %>
-        <%= f.check_box :t_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Friday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Friday" %>
-        <%= f.check_box :f_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Saturday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Saturday" %>
-        <%= f.check_box :s_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
-    <% end %>
-
-    <u>Sunday</u><br>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == "Sunday" %>
-        <%= f.check_box :d_schedule, {},"#{shift.day}: #{shift.time}", "" %>
-        <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %>
-      <% end %><br>
+    <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
+      <% if @shifts.map {|shift| shift.day unless shift.day != weekday || shift.role != user.role}.include?(weekday) %>
+          <br><u><%= weekday %></u>
+        <% @shifts.each do |shift| %>
+          <% if shift.day == weekday && shift.role == user.role %>
+            <br><%= f.check_box (weekday.downcase[0] + "_schedule").to_s, {},"#{shift.day}: #{shift.time}", "" %>
+            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %><br>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
 
     <br><%= f.submit "Save changes" %>
   <% end %><br>
 <% else %>
-  <br><br>
 <% end %>
