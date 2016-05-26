@@ -8,10 +8,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @shifts = Shift.all
   end
 
   def edit
     @user = User.find(params[:id])
+    @shifts = Shift.all
   end
 
   def update

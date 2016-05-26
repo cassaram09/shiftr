@@ -21,36 +21,4 @@
 
 <%= link_to "Edit Profile", edit_user_path(@user) if @user.email == current_user.email || current_user.email == "zach.newburgh@gmail.com" %><br><br>
 
-<% if current_user.email == "zach.newburgh@gmail.com" %>
-
-  <strong>Admin Panel</strong>
-
-  <%= form_for(@user) do |f| %>
-
-    <%= f.radio_button :gender, 'm' %> 
-    <%= label :gender, 'Man' %>
-    <%= f.radio_button :gender, 'w' %>
-    <%= label :gender, 'Woman' %><br>
-
-    <%= f.radio_button :role, 'Manager' %> 
-    <%= label :role, 'Manager' %>
-    <%= f.radio_button :role, 'Counter' %>
-    <%= label :role, 'Counter' %>
-    <%= f.radio_button :role, 'Busser' %>
-    <%= label :role, 'Busser' %><br>
-
-    <%= f.radio_button :rating, 'high' %> 
-    <%= label :rating, 'High' %>
-    <%= f.radio_button :rating, 'medium' %>
-    <%= label :rating, 'Medium' %>
-    <%= f.radio_button :rating, 'low' %>
-    <%= label :rating, 'Low' %><br><br>
-    <%= f.submit "Save changes" %>
-
-  <% end %><br>
-
-<% else %>
-
-  <br><br>
-
-<% end %>
+<%= render partial: "admin", locals: {user: @user} %>

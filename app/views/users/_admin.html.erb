@@ -1,7 +1,7 @@
 <% if current_user.email == "zach.newburgh@gmail.com" %>  
   <strong>Admin Panel</strong>
 
-  <%= form_for(:user) do |f| %>
+  <%= form_for(user) do |f| %>
 
     <%= f.radio_button :gender, 'm' %> 
     <%= label :gender, 'Man' %>
