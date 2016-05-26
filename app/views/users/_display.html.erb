@@ -21,30 +21,10 @@
 | <%= user.email %><br><br>
 
 <strong>Schedule</strong><br>
-<% if user.m_schedule %>
-  <%= user.m_schedule %><br>
-<% end %>
 
-<% if user.t_schedule %>
-  <%= user.t_schedule %><br>
-<% end %>
+<% ["m_schedule", "t_schedule", "w_schedule", "r_schedule", "f_schedule", "s_schedule", "d_schedule"].each do |w_schedule| %>
 
-<% if user.w_schedule %>
-  <%= user.w_schedule %><br>
-<% end %>
-
-<% if user.r_schedule %>
-  <%= user.r_schedule %><br>
-<% end %>
-
-<% if user.f_schedule %>
-  <%= user.f_schedule %><br>
-<% end %>
-
-<% if user.s_schedule %>
-  <%= user.s_schedule %><br>
-<% end %>
-
-<% if user.d_schedule %>
-  <%= user.d_schedule %>
+  <% if user.send(w_schedule) %>
+    <%= user.send(w_schedule) %><br>
+  <% end %>
 <% end %><br>
