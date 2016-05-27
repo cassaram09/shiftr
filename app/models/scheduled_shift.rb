@@ -1,4 +1,4 @@
 class ScheduledShift < ActiveRecord::Base
   belongs_to :shift
-  belongs_to :schedule
+  belongs_to :user
 end

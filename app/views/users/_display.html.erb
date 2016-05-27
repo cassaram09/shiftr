@@ -22,9 +22,14 @@
 
 <strong>Schedule</strong><br>
 
+<%= user.shifts.map {|shift| shift.time} %>
+
+<br><br>
+
 <% ["m_schedule", "t_schedule", "w_schedule", "r_schedule", "f_schedule", "s_schedule", "d_schedule"].each do |w_schedule| %>
 
   <% if user.send(w_schedule) %>
-    <%= user.send(w_schedule) %><br>
+    <%= link_to user.send(w_schedule), shifts_path(@shifts.find(@shifts.select{|key, value| key[:time] == user.send(w_schedule).split(" ")[1]})[0]) %><br>
   <% end %>
 <% end %>
+
