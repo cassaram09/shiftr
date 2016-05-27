@@ -2,21 +2,13 @@
   <strong>Shift Panel</strong>
 
   <%= form_for(user) do |f| %>
-
-    <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
-      <% if @shifts.map {|shift| shift.day unless shift.day != weekday || shift.role != user.role}.include?(weekday) %>
-          <u><%= weekday %></u>
-        <% @shifts.each do |shift| %>
-          <% if shift.day == weekday && shift.role == user.role %>
-            <br><%= f.check_box (weekday.downcase[0] + "_schedule").to_s, {},"#{shift.day}: #{shift.time}", "" %>
-            <%= "#{shift.time} | #{shift.role.capitalize.pluralize}: #{shift.staff.to_s}" %><br>
-          <% end %>
-        <% end %>
+    <% ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].each do |day| %>
+      <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
+        <u><%= day %></u><br>
+        <%= collection_check_boxes(:user, :shift_ids, @shifts.where(role: user.role, day: day), :id, :time) %><br>
       <% end %>
     <% end %>
 
-     <%= f.submit "Save changes" %>
-  <% end %><br>
-
-<% else %>
-<% end %>
+  <%= f.submit %>
+  <% end %>
+<% end %><br> 

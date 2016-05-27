@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   has_many :scheduled_shifts
   has_many :shifts, through: :scheduled_shifts
 
+  accepts_nested_attributes_for :shifts
+
 end

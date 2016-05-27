@@ -10,6 +10,8 @@ Staff Needed: <%= @shift.staff %><br>
 <%= link_to "Edit Shift", edit_shift_path(@shift) %> | 
 <%= link_to "Delete Shift", @shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
 
-<%= @shift.users.each do |user| %>
-  <%= user.name %>
+<h3>Staff</h3>
+<% @shift.users.each do |user| %>
+  <%= render partial: "users/display", locals: {user: user} %>
 <% end %>
+
