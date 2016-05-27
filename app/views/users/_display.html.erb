@@ -4,7 +4,13 @@
   <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
 <% end %>
 
-<strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit profile)", edit_user_path(user) if user.email == current_user.email || admin %><br>
+<strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit)", edit_user_path(user) if user.email == current_user.email || admin %>
+
+<% if admin || user == current_user %>
+  | <%= link_to "(delete)", user,  method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<br>
 
 <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
 
@@ -21,8 +27,12 @@
 | <%= user.email %><br><br>
 
 <strong>Schedule</strong><br>
-
-<% user.shifts.each do |shift| %>
-  <%= link_to "#{shift.day}: #{shift.time}", shift %>
+<% if user.shifts.empty? %>
+  <em>Not scheduled</em>
+<% else %>
+  <% user.shifts.each do |shift| %>
+    <%= link_to "#{shift.day}: #{shift.time}", shift %>
+  <% end %>
 <% end %><br>
+
 

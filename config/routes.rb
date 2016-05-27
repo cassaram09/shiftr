@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :users
   resources :shifts
   resources :schedules
+  resources :requests
+  
   post 'users/:id/edit' => 'users#edit'
+  post 'requests/new' => 'requests#create'
 
   root 'users#index'
   

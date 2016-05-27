@@ -12,7 +12,7 @@
           <strong><%= link_to "#{shift.time}", shift_path(shift) %></strong><br>
           Staff needed: <%= shift.staff %><br>
           <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-          <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
       <% end %>
     <% end %>
   <% end %>

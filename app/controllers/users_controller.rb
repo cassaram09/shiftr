@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @shifts = Shift.all
+    @request = Request.new
   end
 
   def update
@@ -23,6 +24,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   private

@@ -9,10 +9,12 @@
   <% if user_signed_in? %>
     <%= link_to "Home", users_path %><br>
     <%= link_to "Profile", user_path(current_user) %><br>
-    <% if current_user.email == "zach.newburgh@gmail.com" %>
+    <%= link_to "Request Form", new_request_path %><br>
+    <% if admin %>
+      <%= link_to "Requests", requests_path %><br>
       <%= link_to "Shifts", shifts_path %><br>
     <% end %>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
   <% end %>
 
 </head>

@@ -1,4 +1,11 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
-<%= render partial: "display", locals: {user: @user} %>
+<%= render partial: "display", locals: {user: @user} %><br>
+
+
+### REQUEST DISPLAY NOT WORKING YET ###
+
+<% @user.requests.each do |request| %>
+  <%= request %>
+<% end %>
