@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   has_one :request
   accepts_nested_attributes_for :shifts
 
+  def self.best_users
+    self.all.where(rating: 'high')
+  end
+
 end

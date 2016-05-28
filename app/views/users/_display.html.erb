@@ -6,7 +6,7 @@
 
 <strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit)", edit_user_path(user) if user.email == current_user.email || admin %>
 
-<% if admin || user == current_user %>
+<% if admin || user.email == current_user.email %>
   | <%= link_to "(delete)", user,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
@@ -35,19 +35,5 @@
   <% end %>
 <% end %><br>
 
-<% if current_user.email == user.email %>
-  <br><b><%= link_to "Availability", user_request_path(user, user.request) %></b>
-<% else %>
-  <br><b>Availability</b>
-<% end %>
-
-<% if user.request %>
-  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-    <% if user.request.send(day.downcase) != "" %>
-      <br><%= "#{day}: #{user.request.send(day.downcase)}" %>
-    <% end %>
-  <% end %><br>
-<% else %>
-  <br><em>Not submitted</em><br>
-<% end %>
+<%= render partial: "/requests/availability", locals: {user: user, request: user.request} %>
 

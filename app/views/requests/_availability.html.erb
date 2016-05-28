@@ -1,0 +1,11 @@
+<br><strong>Availability</strong> <%= link_to "(edit)", edit_user_request_path(user, user.request) unless user.email != current_user.email %>
+
+<% if user.request %>
+  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+    <% if user.request.send(day.downcase) != "" %>
+      <br><%= "#{day}: #{user.request.send(day.downcase)}" %>
+    <% end %>
+  <% end %><br>
+<% else %>
+  <br><em>Not submitted</em><br>
+<% end %>

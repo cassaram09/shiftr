@@ -1,19 +1,23 @@
-<h1>Shifts#index</h1>
-<p>Find me in app/views/shifts/index.html.erb</p>
+<% if admin %>
 
-<%= link_to "Add Shift", new_shift_path %><br>
+  <h1>Shifts#index</h1>
+  <p>Find me in app/views/shifts/index.html.erb</p>
 
-<% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
-  <h3><%= weekday unless !@shifts.map {|shift| shift.day}.include?(weekday) %></h3>
-  <% ["Manager", "Counter", "Busser"].each do |role| %>
-    <h4><%= role unless !@shifts.map {|shift| shift.role if shift.day == weekday}.include?(role) %></h4>
-    <% @shifts.each do |shift| %>
-      <% if shift.day == weekday && shift.role == role %>
-          <strong><%= link_to "#{shift.time}", shift_path(shift) %></strong><br>
-          Staff needed: <%= shift.staff %><br>
-          <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-          <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+  <%= link_to "Add Shift", new_shift_path %><br>
+
+  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
+    <h3><%= weekday unless !@shifts.map {|shift| shift.day}.include?(weekday) %></h3>
+    <% ["Manager", "Counter", "Busser"].each do |role| %>
+      <h4><%= role unless !@shifts.map {|shift| shift.role if shift.day == weekday}.include?(role) %></h4>
+      <% @shifts.each do |shift| %>
+        <% if shift.day == weekday && shift.role == role %>
+            <strong><%= link_to "#{shift.time}", shift_path(shift) %></strong><br>
+            Staff needed: <%= shift.staff %><br>
+            <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
+            <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
+
 <% end %>

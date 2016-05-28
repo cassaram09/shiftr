@@ -1,11 +1,4 @@
 <h2><%= @user.name.split(" ")[0] %>'s Request</h2>
-<strong>Last updated on <%= @request.updated_at.strftime("%A, %b #{Time.now.strftime("%e")}") %></strong><br>
+<em>Last updated on <%= @request.updated_at.strftime("%A, %b #{Time.now.strftime("%e")}") %></em><br>
 
-<br><u>Availabilities</u> <%= link_to "(edit)", edit_user_request_path(@user, @request)%><br>
-
-<% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-  <% if @request.send(day.downcase) != "" %>
-    <br><%= "#{day}: #{@request.send(day.downcase)}" %>
-  <% end %>
-<% end %>
-
+<%= render partial: "availability", locals: {user: @user, request: @request} %><br>

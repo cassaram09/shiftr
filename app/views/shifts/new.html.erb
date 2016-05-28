@@ -1,27 +1,8 @@
-<h1>Shifts#new</h1>
-<p>Find me in app/views/shifts/new.html.erb</p>
+<% if admin %>
 
-<%= form_for @shift do |f| %>
+  <h1>Shifts#new</h1>
+  <p>Find me in app/views/shifts/new.html.erb</p>
 
-  <div>
-    <%= f.label :day, "Day:" %>
-    <%= f.select :day, [ 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ], prompt: '', required: true %><br><br>
-  </div>
-
-  <div>
-    <%= f.label :role, "Type:" %>
-    <%= f.select :role, [ 'Manager','Counter','Busser' ], prompt: '', required: true %><br><br>
-  </div>
-
-  <div>
-    <%= f.label :time, "Time:" %>
-    <%= f.text_field :time, required: true %><br><br>
-  </div>
-
-  <div>
-    <%= f.label :staff, "Staff needed:" %>
-    <%= f.number_field :staff, style: 'width: 35px', in: 1..5, required: true %><br><br>
-  </div>
-
-  <%= f.submit %>
+  <%= render partial: "form", locals: {shift: @shift} %>
+ 
 <% end %>
