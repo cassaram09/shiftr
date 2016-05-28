@@ -2,11 +2,3 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <%= render partial: "display", locals: {user: @user} %><br>
-
-<b><%= link_to "Availabilities", user_request_path(@user, @user.request) %></b>
-
-<% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-  <% if @user.request.send(day.downcase) != "" %>
-    <br><%= "#{day}: #{@user.request.send(day.downcase)}" %>
-  <% end %>
-<% end %>
