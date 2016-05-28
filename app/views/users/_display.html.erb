@@ -35,16 +35,19 @@
   <% end %>
 <% end %><br>
 
-<% if current_user.email == @user.email %>
+<% if current_user.email == user.email %>
   <br><b><%= link_to "Availability", user_request_path(user, user.request) %></b>
 <% else %>
   <br><b>Availability</b>
 <% end %>
 
-<% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
-  <% if user.request.send(day.downcase) != "" %>
-    <br><%= "#{day}: #{user.request.send(day.downcase)}" %>
-  <% end %>
+<% if user.request %>
+  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+    <% if user.request.send(day.downcase) != "" %>
+      <br><%= "#{day}: #{user.request.send(day.downcase)}" %>
+    <% end %>
+  <% end %><br>
+<% else %>
+  <br><em>Not submitted</em><br>
 <% end %>
-
 
