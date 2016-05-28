@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
 
-  validates_format_of :name, with: /[\w]+([\s]+[\w]+){1}+/, on: [:create, :update]
   validates :name, uniqueness: true
 
   has_one :identity

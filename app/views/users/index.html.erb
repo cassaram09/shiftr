@@ -1,7 +1,7 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
 
-<% if !User.best_users.empty? %>
+<% if !User.best_users.empty? && admin %>
   <strong>Top Rated Employees</strong>
   <% User.best_users.each do |user| %>
     <br>- <%= link_to "#{user.name}, #{user.role}", user_path(user) %>
@@ -16,8 +16,8 @@
 
     <%= render partial: "admin", locals: {user: user} %>
 
-    <%= render partial: "admin_shift", locals: {user: user} %>
+    <%= render partial: "shift", locals: {user: user} %>
 
   </div>
-  
+
 <% end %>

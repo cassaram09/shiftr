@@ -1,4 +1,4 @@
-<br><strong>Availability</strong> <%= link_to "(edit)", edit_user_request_path(user, user.request) unless user.email != current_user.email %>
+<br><strong>Availability</strong> <%= link_to "(edit)", edit_user_request_path(user, user.request) unless user.email != current_user.email || !user.request%>
 
 <% if user.request %>
   <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>

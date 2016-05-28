@@ -7,7 +7,7 @@
   <%= image_tag(@user.identity.image, size: "200x200") %><br>
 <% end %>
 
-<%= form_for :user do |f| %>
+<%= form_for @user do |f| %>
   
   <div>
     Photo: <%= f.file_field :avatar %>
