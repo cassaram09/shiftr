@@ -3,8 +3,10 @@
 
 <%= render partial: "display", locals: {user: @user} %><br>
 
-### REQUEST DISPLAY NOT WORKING YET ###
+<b><%= link_to "Availabilities", user_request_path(@user, @user.request) %></b>
 
-<% @user.requests.each do |request| %>
-  <%= request %>
+<% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+  <% if @user.request.send(day.downcase) != "" %>
+    <br><%= "#{day}: #{@user.request.send(day.downcase)}" %>
+  <% end %>
 <% end %>

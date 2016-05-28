@@ -9,9 +9,9 @@
   <% if user_signed_in? %>
     <%= link_to "Home", users_path %><br>
     <%= link_to "Profile", user_path(current_user) %><br>
-    <%= link_to "Request Form", new_request_path %><br>
+    <%= link_to "Request Form", new_user_request_path(current_user.id) %><br>
     <% if admin %>
-      <%= link_to "Requests", requests_path %><br>
+      <%= link_to "Requests", user_requests_path(current_user.id) %><br>
       <%= link_to "Shifts", shifts_path %><br>
     <% end %>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>

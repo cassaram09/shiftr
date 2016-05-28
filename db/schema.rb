@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527221831) do
+ActiveRecord::Schema.define(version: 20160528143538) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,8 +33,15 @@ ActiveRecord::Schema.define(version: 20160527221831) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "monday",     default: "n/a"
+    t.string   "tuesday",    default: "n/a"
+    t.string   "wednesday",  default: "n/a"
+    t.string   "thursday",   default: "n/a"
+    t.string   "friday",     default: "n/a"
+    t.string   "saturday",   default: "n/a"
+    t.string   "sunday",     default: "n/a"
   end
 
   create_table "scheduled_shifts", force: :cascade do |t|
