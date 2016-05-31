@@ -5,7 +5,7 @@
 
   <%= link_to "Add Shift", new_shift_path %><br>
 
-  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |weekday| %>
+  <% days.each do |weekday| %>
     <h3><%= weekday unless !@shifts.map {|shift| shift.day}.include?(weekday) %></h3>
     <% ["Manager", "Counter", "Busser"].each do |role| %>
       <h4><%= role unless !@shifts.map {|shift| shift.role if shift.day == weekday}.include?(role) %></h4>

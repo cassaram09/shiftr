@@ -5,7 +5,7 @@
     <br><em>No <%= user.role.downcase %> shifts exist.</em><br>
   <% else %>
     <%= form_for(user) do |f| %>
-      <% ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].each do |day| %>
+      <% days.each do |day| %>
         <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
           <u><%= day %></u><br>
           <%= collection_check_boxes(:user, :shift_ids, @shifts.where(role: user.role, day: day), :id, :time) %><br>
