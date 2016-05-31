@@ -1,4 +1,6 @@
 class ShiftsController < ApplicationController
+  before_action :find_shift, only: [:show, :edit, :update, :destroy]
+
   def index
     @shifts = Shift.all
   end
@@ -14,15 +16,12 @@ class ShiftsController < ApplicationController
   end
 
   def show
-    @shift = Shift.find(params[:id])
   end
 
   def edit
-    @shift = Shift.find(params[:id])
   end
 
   def update
-    @shift = Shift.find(params[:id])
     if @shift.update_attributes(shift_params)
       redirect_to @shift
     else
@@ -31,7 +30,6 @@ class ShiftsController < ApplicationController
   end
 
   def destroy
-    @shift = Shift.find(params[:id])
     @shift.destroy
     redirect_to shifts_path
   end
@@ -41,15 +39,8 @@ class ShiftsController < ApplicationController
   def shift_params
     params.require(:shift).permit(:role, :staff, :time, :day)
   end
+
+  def find_shift
+    @shift = Shift.find(params[:id])
+  end
 end
-
-
-  # create_table "shifts", force: :cascade do |t|
-  #   t.string   "name"
-  #   t.string   "type"
-  #   t.integer  "staff"
-  #   t.string   "day"
-  #   t.string   "time"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
