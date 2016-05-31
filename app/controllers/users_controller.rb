@@ -1,24 +1,20 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_shifts, only: [:index, :show, :edit]
   
   def index
     @users = User.all
-    @shifts = Shift.all
   end
 
   def show
-    @user = User.find_by_id(params[:id])
-    @shifts = Shift.all
   end
 
   def edit
-    @user = User.find(params[:id])
-    @shifts = Shift.all
     @request = Request.new
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       redirect_to users_path
     else
@@ -27,15 +23,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
   end
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :phone, :role, :rating, :avatar, :gender, shift_ids: [])
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :phone, :role, :rating, :avatar, :gender, shift_ids: [])
+  end
 
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def find_shifts
+    @shifts = Shift.all
+  end
 end
