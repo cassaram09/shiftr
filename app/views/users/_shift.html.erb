@@ -8,7 +8,11 @@
       <% days.each do |day| %>
         <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
           <u><%= day %></u><br>
-          <%= collection_check_boxes(:user, :shift_ids, @shifts.where(role: user.role, day: day), :id, :time) %><br>
+          <%= hidden_field_tag "user[shift_ids][]", nil %>
+          <% @shifts.where(role: user.role, day: day).each do |shift| %>
+            <%= check_box_tag "user[shift_ids][]", shift.id, user.shift_ids.include?(shift.id) %>
+            <%= shift.time %><br>
+          <% end %>
         <% end %>
       <% end %>
       <%= f.submit "Save shifts" %>
