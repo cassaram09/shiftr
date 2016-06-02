@@ -1,5 +1,5 @@
 <% if admin %>  
-  <br><strong>Admin Panel</strong><br>
+  <br><strong><%= link_to "Admin Panel", "#" %></strong><br>
 
   <%= form_for user, html: {id: :admin_panel} do |f| %>
 
