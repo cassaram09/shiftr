@@ -8,18 +8,18 @@
   <% end %><br><br>
 <% end %>
 
-<table>
-<% @users.sort_by {|k,v| k[:role]}.reverse.in_groups_of(4, false).each do |user_array| %>
-  <tr>
-    <% user_array.each do |user| %>
-          
-      <td><div><%= render partial: "display", locals: {user: user} %>
+<table id="users">
+  <% @users.sort_by {|k,v| k[:role]}.reverse.in_groups_of(4, false).each do |user_array| %>
+    <tr>
+      <% user_array.each do |user| %>
+            
+        <td><div><%= render partial: "display", locals: {user: user} %>
 
-      <%= render partial: "admin", locals: {user: user} %>
+        <%= render partial: "admin", locals: {user: user} %>
 
-      <%= render partial: "shift", locals: {user: user} %></div></td>
+        <%= render partial: "shift", locals: {user: user} %></div></td>
 
-    <% end %>
-  </tr>
-<% end %>
+      <% end %>
+    </tr>
+  <% end %>
 </table>

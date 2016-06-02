@@ -10,13 +10,17 @@
   display: none;
 }
 
-table { 
+table.users { 
   table-layout: fixed; 
   width: 100%;
 }
 
-td div { 
+table.users td div { 
   width: 100%; 
-  height: 800px; 
+  height: 100%; 
   overflow: hidden;
+}
+
+table.users td {
+  height: 0px;
 }
