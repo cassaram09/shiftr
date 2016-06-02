@@ -1,7 +1,7 @@
 <% if admin %>  
   <br><strong>Admin Panel</strong><br>
 
-  <%= form_for(user) do |f| %>
+  <%= form_for user, html: {id: :admin_panel} do |f| %>
 
     <%= f.radio_button :gender, 'm' %> 
     <%= label :gender, 'Man' %>
