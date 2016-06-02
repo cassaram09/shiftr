@@ -9,3 +9,10 @@
 .shift_panel {
   display: none;
 }
+
+table { 
+  table-layout: fixed; 
+  width: 100%;
+}
+
+td div { width: 100%; height: 800px; overflow: hidden;}
