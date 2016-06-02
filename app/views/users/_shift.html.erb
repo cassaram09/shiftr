@@ -1,10 +1,10 @@
 <% if admin %>  
-  <strong>Shift Panel</strong>
+  <strong><%= link_to "Shift Panel", "#", class: :shift_link %></strong>
 
   <% if !@shifts.map {|shift| shift.role}.include?(user.role) %>
     <br><em>No <%= user.role.downcase %> shifts exist.</em><br>
   <% else %>
-    <%= form_for user, html: {id: :shift_panel} do |f| %>
+    <%= form_for user, html: {class: :shift_panel} do |f| %>
       <% days.each do |day| %>
         <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
           <u><%= day %></u><br>

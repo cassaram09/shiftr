@@ -6,3 +6,7 @@ $(document).on "page:change", ->
   $('.admin_link').click (event) ->
     event.preventDefault()
     $('.admin_panel').fadeToggle()
+
+  $('.shift_link').click (event) ->
+    event.preventDefault()
+    $('.shift_panel').fadeToggle()
