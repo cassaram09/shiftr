@@ -1,7 +1,7 @@
 <% if admin %>  
-  <br><strong><%= link_to "Admin Panel", "#", id: :admin_link %></strong><br>
+  <br><strong><%= link_to "Admin Panel", "#", class: :admin_link %></strong><br>
 
-  <%= form_for user, html: {id: :admin_panel} do |f| %>
+  <%= form_for user, html: {class: :admin_panel} do |f| %>
 
     <%= f.radio_button :gender, 'm' %> 
     <%= label :gender, 'Man' %>

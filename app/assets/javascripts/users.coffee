@@ -3,5 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "page:change", ->
-  $('#admin_link').click ->
-    $('#admin_panel').fadeToggle()
+  $('.admin_link').click (event) ->
+    event.preventDefault()
+    $('.admin_panel').fadeToggle()
