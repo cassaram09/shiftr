@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: true
   validates :name, presence: true, on: :update
   validates :email, presence: true, on: :update
-  # validates :phone, length: { is: 10, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
+  validate :phone_ten_digits, on: :update, unless: :phone_blank
 
   has_one :identity
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "50x50>" }, default_url: "/images/:style/missing.png"
@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
 
   def phone_blank
     self.phone.to_s == ""
+  end
+
+  def phone_ten_digits
+    if self.phone.gsub(/[^\d]/, '').length != 10
+      errors.add(:phone, "number must include exactly 10 digits.")
+    end
   end
 
   def slug
