@@ -1,28 +1,30 @@
 <% if admin %>  
-  <br><strong><%= link_to "Admin Panel", "#", class: :admin_link %></strong><br>
+    <section id="admin-panel-<%= user.slug %>">
+        <br><strong><%= link_to "Admin Panel", "#", class: :admin_link %></strong><br>
 
-  <%= form_for user, html: {class: :admin_panel} do |f| %>
+        <%= form_for user, html: {class: :admin_panel} do |f| %>
 
-    <%= f.radio_button :gender, 'm' %> 
-    <%= label :gender, 'Man' %>
-    <%= f.radio_button :gender, 'w' %>
-    <%= label :gender, 'Woman' %><br>
+            <%= f.radio_button :gender, 'm' %> 
+            <%= label :gender, 'Man' %>
+            <%= f.radio_button :gender, 'w' %>
+            <%= label :gender, 'Woman' %><br>
 
-    <%= f.radio_button :role, 'Manager' %> 
-    <%= label :role, 'Manager' %>
-    <%= f.radio_button :role, 'Counter' %>
-    <%= label :role, 'Counter' %>
-    <%= f.radio_button :role, 'Busser' %>
-    <%= label :role, 'Busser' %><br>
+            <%= f.radio_button :role, 'Manager' %> 
+            <%= label :role, 'Manager' %>
+            <%= f.radio_button :role, 'Counter' %>
+            <%= label :role, 'Counter' %>
+            <%= f.radio_button :role, 'Busser' %>
+            <%= label :role, 'Busser' %><br>
 
-    <%= f.radio_button :rating, 'high' %> 
-    <%= label :rating, 'High' %>
-    <%= f.radio_button :rating, 'medium' %>
-    <%= label :rating, 'Medium' %>
-    <%= f.radio_button :rating, 'low' %>
-    <%= label :rating, 'Low' %>
+            <%= f.radio_button :rating, 'high' %> 
+            <%= label :rating, 'High' %>
+            <%= f.radio_button :rating, 'medium' %>
+            <%= label :rating, 'Medium' %>
+            <%= f.radio_button :rating, 'low' %>
+            <%= label :rating, 'Low' %>
 
-    <br><%= f.submit "Save changes" %>
-  <% end %><br>
-<% else %>
+            <br><%= f.submit "Save changes" %>
+
+        <% end %><br>
+    </section>
 <% end %>
