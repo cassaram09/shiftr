@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @best_users = User.best_users
   end
 
   def show
