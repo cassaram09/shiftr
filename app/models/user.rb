@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  validates :phone, format: { with: /\d{10}/, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
 
   has_one :identity
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "50x50>" }, default_url: "/images/:style/missing.png"
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
 
   def self.best_users
     self.all.where(rating: 'high')
+  end
+
+  def phone_blank
+    self.phone.to_s == ""
   end
 
 end

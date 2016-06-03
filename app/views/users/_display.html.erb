@@ -21,7 +21,7 @@
     <em><%= "Phone pending" %></em>
   <% end %>
 <% else %>
-  <%= number_to_phone(user.phone.gsub(/[()\s-]/,"").to_i, area_code: true) %>
+  <%= number_to_phone(user.phone.gsub(/\D/,"").to_i, area_code: true) %>
 <% end %>
 
 | <%= user.email %><br><br>
