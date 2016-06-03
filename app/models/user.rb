@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, uniqueness: true
+  validates :name, presence: true, on: :update
   validates :email, presence: true, on: :update
   validates :phone, format: { with: /\d{10}/, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
 
