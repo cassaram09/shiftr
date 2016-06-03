@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :omniauthable
 
   validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, on: :update
   validates :phone, format: { with: /\d{10}/, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
 
   has_one :identity
