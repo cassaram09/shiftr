@@ -8,7 +8,7 @@
   <% end %><br><br>
 <% end %>
 
-<table id="users">
+<table id="user_index">
   <% @users.sort_by {|k,v| k[:role]}.reverse.in_groups_of(4, false).each do |user_array| %>
     <tr>
       <% user_array.each do |user| %>
