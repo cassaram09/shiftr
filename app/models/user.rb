@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: true
   validates :name, presence: true, on: :update
   validates :email, presence: true, on: :update
-  validates :phone, format: { with: /\d{10}/, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
+  # validates :phone, length: { is: 10, message: "must include 10 numbers" }, on: :update, unless: :phone_blank
 
   has_one :identity
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "50x50>" }, default_url: "/images/:style/missing.png"
