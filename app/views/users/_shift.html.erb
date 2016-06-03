@@ -1,23 +1,25 @@
-<% if admin %>  
-  <strong><%= link_to "Shift Panel", "#", class: :shift_link %></strong>
+<% if admin %>
+  <section id="shift-panel-<%= user.slug %>">
+    <strong><%= link_to "Shift Panel", "#", class: :shift_link %></strong>
 
-  <% if user.role.blank? %>
-    <br><em>Has not been assigned a role.</em><br>
-  <% elsif !@shifts.map {|shift| shift.role}.include?(user.role) %>
-    <br><em>No <%= user.role.downcase %> shifts exist.</em><br>
-  <% else %>
-    <%= form_for user, html: {class: :shift_panel} do |f| %>
-      <% days.each do |day| %>
-        <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
-          <u><%= day %></u><br>
-          <%= hidden_field_tag "user[shift_ids][]", nil %>
-          <% @shifts.where(role: user.role, day: day).each do |shift| %>
-            <%= check_box_tag "user[shift_ids][]", shift.id, user.shift_ids.include?(shift.id) %>
-            <%= shift.time %><br>
+    <% if user.role.blank? %>
+      <br><em>Has not been assigned a role.</em><br>
+    <% elsif !@shifts.map {|shift| shift.role}.include?(user.role) %>
+      <br><em>No <%= user.role.downcase %> shifts exist.</em><br>
+    <% else %>
+      <%= form_for user, html: {class: :shift_panel} do |f| %>
+        <% days.each do |day| %>
+          <% if @shifts.map {|shift| shift.day unless shift.day != day || shift.role != user.role}.include?(day) %>
+            <u><%= day %></u><br>
+            <%= hidden_field_tag "user[shift_ids][]", nil %>
+            <% @shifts.where(role: user.role, day: day).each do |shift| %>
+              <%= check_box_tag "user[shift_ids][]", shift.id, user.shift_ids.include?(shift.id) %>
+              <%= shift.time %><br>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <%= f.submit "Save shifts" %>
-    <% end %>    
-  <% end %>
+        <%= f.submit "Save shifts" %>
+      <% end %>    
+    <% end %>
+  </section>
 <% end %><br> 
