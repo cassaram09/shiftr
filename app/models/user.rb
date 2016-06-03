@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
     self.phone.to_s == ""
   end
 
+  def slug
+    self.name.downcase.gsub(" ","-")
+  end
+
 end
