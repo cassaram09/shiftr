@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.role != params[:user][:role]
+      @user.shifts.clear
+    end
     if @user.update_attributes(user_params)
       redirect_to users_path
     else
