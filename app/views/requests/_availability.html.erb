@@ -1,11 +1,18 @@
-<br><strong>Availability</strong> <%= link_to "(edit)", edit_user_request_path(user, user.request) unless user.email != current_user.email || !user.request%>
+<br><strong>Availability</strong> 
+<% if !user.request %>
+  <%= link_to "(new)", new_user_request_path(user.id) %>
+<% else %>
+  <%= link_to "(edit)", edit_user_request_path(user, user.request) unless user.email != current_user.email %>
+<% end %>
 
-<% if user.request %>
-  <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+<% if !user.request %>
+ <br><em>Not submitted</em><br>
+<% elsif days.map {|day| user.request.send(day.downcase)}.uniq[0].blank? %>
+  <br><em>No availability</em><br>
+<% elsif user.request %>
+  <% days.each do |day| %>
     <% if user.request.send(day.downcase) != "" %>
       <br><%= "#{day}: #{user.request.send(day.downcase)}" %>
     <% end %>
   <% end %><br>
-<% else %>
-  <br><em>Not submitted</em><br>
 <% end %>

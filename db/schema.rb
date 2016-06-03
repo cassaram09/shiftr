@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(version: 20160528143538) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "monday",     default: "n/a"
-    t.string   "tuesday",    default: "n/a"
-    t.string   "wednesday",  default: "n/a"
-    t.string   "thursday",   default: "n/a"
-    t.string   "friday",     default: "n/a"
-    t.string   "saturday",   default: "n/a"
-    t.string   "sunday",     default: "n/a"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "monday"
+    t.string   "tuesday"
+    t.string   "wednesday"
+    t.string   "thursday"
+    t.string   "friday"
+    t.string   "saturday"
+    t.string   "sunday"
   end
 
   create_table "scheduled_shifts", force: :cascade do |t|

@@ -1,7 +1,9 @@
 <% if admin %>  
   <strong><%= link_to "Shift Panel", "#", class: :shift_link %></strong>
 
-  <% if !@shifts.map {|shift| shift.role}.include?(user.role) %>
+  <% if user.role.blank? %>
+    <br><em>Has not been assigned a role.</em><br>
+  <% elsif !@shifts.map {|shift| shift.role}.include?(user.role) %>
     <br><em>No <%= user.role.downcase %> shifts exist.</em><br>
   <% else %>
     <%= form_for user, html: {class: :shift_panel} do |f| %>
