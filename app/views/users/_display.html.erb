@@ -1,39 +1,43 @@
-<% if user.avatar_file_name != nil %>
-  <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
-<% elsif user.identity %>
-  <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
-<% end %>
+<section id="display-<%= user.slug %>">
 
-<strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit)", edit_user_path(user) if user.email == current_user.email || admin %>
+  <% if user.avatar_file_name != nil %>
+    <%= link_to image_tag(user.avatar.url, size: "200x200"), user_path(user) %><br>
+  <% elsif user.identity %>
+    <%= link_to image_tag(user.identity.image, size: "200x200"), user_path(user) %><br>
+  <% end %>
 
-<% if admin || user.email == current_user.email %>
-  | <%= link_to "(delete)", user,  method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+  <strong><%= link_to user.name.to_s + "#{user.role != '' ? ', ' + user.role.to_s.capitalize : nil}", user_path(user.id) %></strong> <%= link_to "(edit)", edit_user_path(user) if user.email == current_user.email || admin %>
 
-<br>
+  <% if admin || user.email == current_user.email %>
+    | <%= link_to "(delete)", user,  method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 
-<em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
+  <br>
 
-<% if user.phone == nil || user.phone == "" %>
-  <% if user.email == current_user.email || admin %>
-    <%= link_to "[ADD PHONE]", edit_user_path(user) %>
+  <em><%= user.created_at.strftime("Joined on %B %d, %Y") %></em><br>
+
+  <% if user.phone == nil || user.phone == "" %>
+    <% if user.email == current_user.email || admin %>
+      <%= link_to "[ADD PHONE]", edit_user_path(user) %>
+    <% else %>
+      <em><%= "Phone pending" %></em>
+    <% end %>
   <% else %>
-    <em><%= "Phone pending" %></em>
+    <%= number_to_phone(user.phone.gsub(/\D/,"").to_i, area_code: true) %>
   <% end %>
-<% else %>
-  <%= number_to_phone(user.phone.gsub(/\D/,"").to_i, area_code: true) %>
-<% end %>
 
-| <%= user.email %><br><br>
+  | <%= user.email %><br><br>
 
-<strong>Schedule</strong>
-<% if user.shifts.empty? %>
-  <br><em>Not scheduled</em>
-<% else %>
-  <% user.shifts.each do |shift| %>
-    <br><%= link_to "#{shift.day}: #{shift.time}", shift %>
-  <% end %>
-<% end %><br>
+  <strong>Schedule</strong>
+  <% if user.shifts.empty? %>
+    <br><em>Not scheduled</em>
+  <% else %>
+    <% user.shifts.each do |shift| %>
+      <br><%= link_to "#{shift.day}: #{shift.time}", shift %>
+    <% end %>
+  <% end %><br>
 
-<%= render partial: "/requests/availability", locals: {user: user, request: user.request} %>
+  <%= render partial: "/requests/availability", locals: {user: user, request: user.request} %>
+
+</section>
 
