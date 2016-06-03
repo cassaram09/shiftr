@@ -30,6 +30,10 @@
 
   <%= f.submit "Update Profile" %> 
 
+<% end %><br>
+
+<% @user.errors.full_messages.each do |msg| %>
+  <li><%= msg %>
 <% end %>
 
 
