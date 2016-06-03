@@ -13,7 +13,7 @@
     <tr>
       <% user_array.each do |user| %>
             
-        <td><div><%= render partial: "display", locals: {user: user} %>
+        <td id="<%= user.slug %>"><div><%= render partial: "display", locals: {user: user} %>
 
         <%= render partial: "admin", locals: {user: user} %>
 
