@@ -24,3 +24,9 @@ table.users td div {
 table.users td {
   height: 0px;
 }
+
+.field_with_errors {
+  padding: 1px;
+  background-color: red;
+  display: table;
+}
