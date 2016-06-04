@@ -19,7 +19,7 @@
         <u>Not yet commented:</u>
           <% User.all.map {|user| user.name}.reject{|name| name if post.comments.map {|comment| comment.user.name}.uniq.include?(name)}.each do |name| %>
             <li><%= name %></li>
-          <% end %>
+          <% end %> 
       </p>
 
       <p>
