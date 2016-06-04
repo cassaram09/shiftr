@@ -4,5 +4,6 @@
   <% @posts.each do |post| %>
     <p><strong><%= post.title %></strong><br>
     <p><%= post.body %></p>
+    <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
   <% end %>
 
