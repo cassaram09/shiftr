@@ -14,5 +14,13 @@
       <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %>
     </p>
     <p><%= link_to "Add Comment", new_post_comment_path(post.id) %></p>
+
+    <% post.comments.each do |comment| %>
+      <p>
+        <strong><%= comment.user.name + " " + comment.created_at.strftime("left a comment on %B %d, %Y:") %></strong><br>
+        <%= comment.body %>
+      </p>
+    <% end %>
+
   <% end %>
 
