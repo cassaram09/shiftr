@@ -9,7 +9,7 @@
     <%post.tags.each do |tag| %>
       <%= "#{tag.name} " %>
     <% end %>
-    
+
     <% if admin %>
       <p>
         <%= link_to "Edit Post", edit_post_path(post) %> |
@@ -21,7 +21,7 @@
     <% post.comments.each do |comment| %>
       <p>
         <strong><%= comment.user.name + " " + comment.created_at.strftime("left a comment on %B %d, %Y:") %></strong><br>
-        <%= comment.body %>
+        <%= comment.body %> <%= link_to "(edit)", edit_post_comment_path(post.id, comment) if comment.user.id == current_user.id %></p>
       </p>
     <% end %>
 
