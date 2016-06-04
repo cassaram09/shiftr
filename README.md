@@ -6,7 +6,7 @@ This is a Rails app that creates a scheduling platform for shift employees. Empl
 
 [shiftr](https://github.com/zachnewburgh/shiftr) uses the [devise](https://github.com/plataformatec/devise), [OmniAuth Facebook](https://github.com/mkdynamic/omniauth-facebook), and [Paperclip](https://github.com/thoughtbot/paperclip) gems to successfully execute.
 
-### Install Guide ###
+### Installation Guide ###
 
 If not already available, install [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and [Bundler](http://bundler.io/#getting-started).
 
