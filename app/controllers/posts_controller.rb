@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create!(title: params[:post][:title], body: params[:post][:body])
+    @post = Post.create!(post_params)
     redirect_to posts_path
   end
 
@@ -18,5 +18,11 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+
+  private
+  def post_params
+    params.require(:post).permit(:title, :body, tag_ids: [], tags_attributes:[:name])
+  end
+  
 
 end
