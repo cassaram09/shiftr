@@ -3,8 +3,6 @@
 
   <% @posts.each do |post| %>
     <p><strong><%= post.title %></strong><br>
-    <em>By <%= post.user.name %></em></p>
     <p><%= post.body %></p>
   <% end %>
 
-  
