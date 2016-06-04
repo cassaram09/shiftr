@@ -1,2 +1,21 @@
 <h1>Tags#show</h1>
 <p>Find me in app/views/tags/show.html.erb</p>
+
+<h2><%= @tag.name %></h2>
+
+<% @tag.posts.each do |post| %>
+  <p><strong><%= post.title %></strong>
+  <br><em><%= post.updated_at.strftime("Posted on %B %d, %Y") %></em>
+  <p><%= post.body %></p>
+  Tags:
+  <% post.tags.each do |tag| %>
+    <%= link_to "#{tag.name}", tag_path(tag) %>
+  <% end %>
+
+  <% if admin %>
+    <p>
+      <%= link_to "Edit Post", edit_post_path(post) %> |
+      <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+<% end %>
