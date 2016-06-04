@@ -7,6 +7,6 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags, reject_if: proc {|attributes| attributes[:name].blank?}
 
-  validates :title, presence: :true
-  validates :body, presence: :true
+  validates :title, presence: true
+  validates :body, presence: true
 end
