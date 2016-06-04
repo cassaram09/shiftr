@@ -1,6 +1,10 @@
   <h1>Posts#index</h1>
   <p>Find me in app/views/posts/index.html.erb</p>
 
+  <% if admin %>
+    <%= link_to "Add Note", new_post_path %>
+  <% end %>
+
   <% @posts.each do |post| %>
     <p><strong><%= post.title %></strong>
     <br><em><%= post.updated_at.strftime("Posted on %B %d, %Y") %></em>
