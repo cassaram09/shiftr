@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :posts
   get 'scheduled_shifts/create'
 
   devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
