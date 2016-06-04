@@ -2,8 +2,16 @@
   <p>Find me in app/views/posts/index.html.erb</p>
 
   <% @posts.each do |post| %>
-    <p><strong><%= post.title %></strong><br>
+    <p><strong><%= post.title %></strong>
+    <br><em><%= post.updated_at.strftime("Posted on %B %d, %Y") %></em>
     <p><%= post.body %></p>
-    <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+    Tags:
+    <%post.tags.each do |tag| %>
+      <%= "#{tag.name} " %>
+    <% end %>
+    <p>
+      <%= link_to "Edit Post", post,  method: :edit %> |
+      <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
   <% end %>
 
