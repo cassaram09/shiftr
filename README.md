@@ -4,7 +4,7 @@
 
 This is a Rails app that creates a scheduling platform for shift employees. Employees sign up and submit a shift request form. The administrator(s) can edit employee data, add/edit shifts, view shift requests, and assign shifts accordingly.
 
-shiftr implements the [devise](https://github.com/plataformatec/devise), [OmniAuth Facebook](https://github.com/mkdynamic/omniauth-facebook), and [Paperclip](https://github.com/thoughtbot/paperclip) gems to successfully execute.
+[shiftr](https://github.com/zachnewburgh/shiftr) uses the [devise](https://github.com/plataformatec/devise), [OmniAuth Facebook](https://github.com/mkdynamic/omniauth-facebook), and [Paperclip](https://github.com/thoughtbot/paperclip) gems to successfully execute.
 
 ### Install Guide ###
 
@@ -13,7 +13,7 @@ If not already available, install [Ruby](https://www.ruby-lang.org/en/documentat
 Then, run the following in your command line:
 
 ```
-git clone https://github.com/zachnewburgh/shiftr.git`
+git clone https://github.com/zachnewburgh/shiftr.git
 cd shiftr
 bundle
 bin/rake db:migrate
