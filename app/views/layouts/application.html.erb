@@ -10,6 +10,7 @@
     <%= link_to "Home", users_path %><br>
     <%= link_to "Profile", user_path(current_user) %><br>
     <%= link_to "Request", new_user_request_path(current_user.id) %><br>
+    <%= link_to "Notes", posts_path %><br>
     <% if admin %>
       <%= link_to "Shifts", shifts_path if admin%><br>
     <% end %>
