@@ -10,7 +10,7 @@
       <%= "#{tag.name} " %>
     <% end %>
     <p>
-      <%= link_to "Edit Post", post,  method: :edit %> |
+      <%= link_to "Edit Post", edit_post_path(post) %> |
       <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %>
     </p>
   <% end %>
