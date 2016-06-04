@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :posts do
-    resources :comments
-  end
+
 
   get 'scheduled_shifts/create'
 
@@ -11,6 +9,12 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :tags
 
   resources :shifts
   
