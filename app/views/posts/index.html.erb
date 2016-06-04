@@ -7,7 +7,7 @@
     <p><%= post.body %></p>
     Tags:
     <%post.tags.each do |tag| %>
-      <%= "#{tag.name} " %>
+      <%= link_to "#{tag.name}", tag_path(tag) %>
     <% end %>
 
     <% if admin %>
