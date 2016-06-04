@@ -16,6 +16,13 @@
 
     <% if admin %>
       <p>
+        <u>Not yet commented:</u>
+          <% User.all.map {|user| user.name}.reject{|name| name if post.comments.map {|comment| comment.user.name}.uniq.include?(name)}.each do |name| %>
+            <li><%= name %></li>
+          <% end %>
+      </p>
+
+      <p>
         <%= link_to "Edit Post", edit_post_path(post) %> |
         <%= link_to "Delete Post", post,  method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
