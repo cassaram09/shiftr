@@ -10,6 +10,10 @@
     <%= tag_form.text_field :name %>
   <% end %>
 
+  <% @post.errors.full_messages.each do |msg| %>
+    <li><%= msg %><br><br>
+  <% end %>
+
   <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br><br>
 
   <%= f.submit %>
