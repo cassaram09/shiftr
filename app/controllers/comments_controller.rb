@@ -11,6 +11,12 @@ class CommentsController < ApplicationController
     redirect_to posts_path
   end
 
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @user }
+  end
+
   def edit
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
