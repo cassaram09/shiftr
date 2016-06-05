@@ -12,9 +12,12 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @user }
+      format.json { render json: @comment }
+    end
   end
 
   def edit
