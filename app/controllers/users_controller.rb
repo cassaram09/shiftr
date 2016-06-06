@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @best_users = User.best_users
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @users }
+    end
   end
 
   def show
