@@ -3,6 +3,10 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @users = User.all
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @posts }
+    end
   end
 
   def new
