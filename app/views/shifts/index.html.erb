@@ -3,38 +3,29 @@
   <h1>Shifts#index</h1>
   <p>Find me in app/views/shifts/index.html.erb</p>
 
-  <%= link_to "Add Shift", new_shift_path, id: "new_shift", remote: true %><br>
+  <%= link_to "Add Shift", new_shift_path, id: "new_shift" %><br>
 
-  <table id="shift_index">
-
-    <% days.in_groups_of(4, false).each do |weekday_array| %>
-      <tr>
-
-      <% weekday_array.each do |weekday| %>
-        <td><div id="<%= weekday.downcase %>">
-        <h3><%= weekday %></h3>
-
-        <% @shifts.map {|shift| shift.role}.uniq.each do |role| %>
-          <div id="<%= role.downcase %>">
-            <h4><%= role unless !@shifts.map {|shift| shift.role if shift.day == weekday}.include?(role) %></h4>
-            
-            <% @shifts.each do |shift| %>
-              <% if shift.day == weekday && shift.role == role %>
-                  <strong><%= link_to "#{shift.time}", shift_path(shift) %></strong><br>
-                  Staff needed: <%= shift.staff %><br>
-                  <%= link_to "Edit Shift", edit_shift_path(shift) %> | 
-                  <%= link_to "Delete Shift", shift,  method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
-              <% end %>
-            <% end %>
-
-          </div>
-        <% end %>
-
-        </div></td>
+<table>
+<!-- Day Headings -->
+    <% days.each do |day| %>
+      <td><div id="<%= day.downcase %>"><h3><%= day %></h3>
+      <!-- Role Headings -->
+      <% @shifts.map {|shift| shift.role unless shift.day != day}.uniq.each do |role| %>
+        <section id="<%= day.downcase %>-<%= role.to_s.downcase %>">
+          <strong><%= role %></strong>
+          <!-- Each Shift (matching day and role) -->
+          <% @shifts.select {|shift| shift.role == role && shift.day == day}.each do |shift| %>
+            <section id="<%= day.downcase %>-<%= role.to_s.downcase %>-<%= shift.id %>">
+              <p><u><%= link_to shift.time, shift_path(shift) %></u><br>
+              Staff Needed: <%= shift.staff %></p>
+            </section>
+          <% end %>
+        </section>
       <% end %>
-
-      </tr>
+      <div></td>
     <% end %>
 
-  <table>
+</table>
+
+
 <% end %>
