@@ -16,6 +16,10 @@ class ShiftsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @shift }
+    end
   end
 
   def edit
