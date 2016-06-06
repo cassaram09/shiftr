@@ -11,12 +11,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
-      redirect_to posts_path
-    else
-      render 'new'
-    end
+    @post = Post.create(post_params)
+    render json: @post, status: 201
   end
 
   def show
