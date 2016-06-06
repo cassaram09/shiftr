@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @users = User.all
   end
 
   def new
@@ -16,7 +17,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @users = User.all
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @post }
