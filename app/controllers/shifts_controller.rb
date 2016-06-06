@@ -14,9 +14,8 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    @shift = Shift.new(shift_params)
-    @shift.save
-    redirect_to @shift
+    @shift = Shift.create(shift_params)
+    render json: @shift, status: 201
   end
 
   def show
