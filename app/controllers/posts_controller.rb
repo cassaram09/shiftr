@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @users = User.all
     respond_to do |format|
-      format.html { render :show }
+      format.html { render :index }
       format.json { render json: @posts }
     end
   end
