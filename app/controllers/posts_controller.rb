@@ -16,7 +16,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-    render json: @post, status: 201
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @post, status: 201 }
+      format.js
+    end
+    
   end
 
   def show
