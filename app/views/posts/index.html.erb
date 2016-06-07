@@ -2,7 +2,7 @@
   <p>Find me in app/views/posts/index.html.erb</p>
 
   <% if admin %>
-    <%= link_to "Add Note", new_post_path, id: "new_post", remote: true %>
+    <%= link_to "Add Note", new_post_path, id: "new_link", remote: true %>
   <% end %>
 
   <% @posts.each do |post| %>
