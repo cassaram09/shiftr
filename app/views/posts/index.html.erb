@@ -5,6 +5,7 @@
     <%= link_to "Add Note", new_post_path, id: "new_link", remote: true %>
   <% end %>
 
+<section id="posts">
   <% @posts.each do |post| %>
     <h2><%= link_to post.title, post_path(post) %></h2>
     <em><%= post.updated_at.strftime("Posted on %B %d, %Y") %></em>
@@ -23,4 +24,5 @@
       </p>
     <% end %>
   <% end %>
+</section>
 
