@@ -9,6 +9,10 @@
   <% @posts.each do |post| %>
     <h2><%= link_to post.title, post_path(post) %></h2>
     <em><%= post.updated_at.strftime("Posted on %B %d, %Y") %></em>
+    <br>Tags: <% post.tags.each do |tag| %>
+      <%= link_to "#{tag.name}", tag_path(tag) %> 
+    <% end %>
+
 
     <% if admin %>
       <p>
