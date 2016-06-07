@@ -20,7 +20,6 @@ class PostsController < ApplicationController
       format.html { render :show }
       format.json { render json: @post }
     end
-    
   end
 
   def show
