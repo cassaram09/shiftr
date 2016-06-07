@@ -5,28 +5,27 @@
 
   <%= link_to "Add Shift", new_shift_path, id: "new_link", remote: true %><br>
 
-<table>
-<!-- Day Headings -->
-    <% days.each do |day| %>
-      <td><div id="<%= day.downcase %>"><h3><%= day %></h3>
-      <!-- Role Headings -->
-      <% @shifts.map {|shift| shift.role unless shift.day != day}.uniq.each do |role| %>
-        <section id="<%= day.downcase %>-<%= role.to_s.downcase %>">
-          <strong><%= role %></strong>
-          <!-- Each Shift (matching day and role) -->
-          <% @shifts.select {|shift| shift.role == role && shift.day == day}.each do |shift| %>
-            <section id="<%= day.downcase %>-<%= role.to_s.downcase %>-<%= shift.id %>">
-              <p><u><%= link_to shift.time, shift_path(shift) %></u><br>
-              Staff Needed: <%= shift.staff %><br>
-              <%= link_to "(edit)", edit_shift_path(shift) if admin %> <%= " | " if admin %><%= link_to "(delete)", shift,  method: :delete, data: { confirm: 'Are you sure?' } if admin %></p>
-            </section>
-          <% end %>
-        </section>
+  <table>
+  <!-- Day Headings -->
+      <% days.each do |day| %>
+        <td><div id="<%= day.downcase %>"><h3><%= day %></h3>
+        <!-- Role Headings -->
+        <% @shifts.map {|shift| shift.role unless shift.day != day}.uniq.each do |role| %>
+          <section id="<%= day.downcase %>-<%= role.to_s.downcase %>">
+            <strong><%= role %></strong>
+            <!-- Each Shift (matching day and role) -->
+            <% @shifts.select {|shift| shift.role == role && shift.day == day}.each do |shift| %>
+              <section id="<%= day.downcase %>-<%= role.to_s.downcase %>-<%= shift.id %>">
+                <p><u><%= link_to shift.time, shift_path(shift) %></u><br>
+                Staff Needed: <%= shift.staff %><br>
+                <%= link_to "(edit)", edit_shift_path(shift) if admin %> <%= " | " if admin %><%= link_to "(delete)", shift,  method: :delete, data: { confirm: 'Are you sure?' } if admin %></p>
+              </section>
+            <% end %>
+          </section>
+        <% end %>
+        <div></td>
       <% end %>
-      <div></td>
-    <% end %>
 
-</table>
-
+  </table>
 
 <% end %>

@@ -5,6 +5,7 @@ class ShiftsController < ApplicationController
     @shifts = Shift.all
     respond_to do |format|
       format.html { render :index }
+      format.js 
       format.json { render json: @shifts }
     end
   end
@@ -15,7 +16,10 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.create(shift_params)
-    render json: @shift, status: 201
+    respond_to do |format|
+      format.html { redirect_to @shift }
+      format.js 
+    end
   end
 
   def show
