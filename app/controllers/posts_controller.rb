@@ -15,10 +15,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @post }
+    @post = Post.new(post_params)
+    if @post.save
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @post }
+      end
+    else
+      render 'new'
     end
   end
 
