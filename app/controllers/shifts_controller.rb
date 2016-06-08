@@ -1,32 +1,24 @@
 class ShiftsController < ApplicationController
   before_action :find_shift, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js, :json
 
   def index
     @shifts = Shift.all
-    respond_to do |format|
-      format.html { render :index }
-      format.js 
-      format.json { render json: @shifts }
-    end
+    respond_with @shifts
   end
 
   def new
     @shift = Shift.new
+    respond_with @shift
   end
 
   def create
     @shift = Shift.create(shift_params)
-    respond_to do |format|
-      format.html { redirect_to @shift }
-      format.js 
-    end
+    respond_with @shift
   end
 
   def show
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @shift }
-    end
+    respond_with @shift
   end
 
   def edit
