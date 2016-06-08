@@ -10,8 +10,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 
-  def name=(name)
-    write_attribute(name: name.upcase)
+  def title=(title)
+    write_attribute(title: title.upcase)
   end
 
 end
