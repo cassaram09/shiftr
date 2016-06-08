@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  respond_to :html, :js, :json
 
   def new
     @user = User.find(current_user.id)
@@ -15,6 +16,7 @@ class RequestsController < ApplicationController
   def show
     @user = current_user
     @request = Request.find_by_id(params[:id])
+    respond_with @request
   end
 
   def edit
