@@ -11,7 +11,7 @@ Tags:
 
 <h3>Comments</h3>
 
-<p><%= link_to "Add Comment", new_post_comment_path(@post.id) %></p>
+<%= link_to "Load Comments", post_comments_path(@post.id) %>
 
 <% @post.comments.each do |comment| %>
   <p>
@@ -19,3 +19,5 @@ Tags:
     <%= comment.body %> <%= link_to "(edit)", edit_post_comment_path(@post.id, comment) if comment.user.id == current_user.id %></p>
   </p>
 <% end %>
+
+<p><%= link_to "Add Comment", new_post_comment_path(@post.id) %></p>
