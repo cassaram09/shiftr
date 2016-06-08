@@ -1,2 +1,5 @@
-<h1>Comments#show/h1>
+<h1>Comments#show</h1>
 <p>Find me in app/views/comments/show.html.erb</p>
+
+<strong><%= @comment.user.name + " " + @comment.created_at.strftime("left a comment on %B %d, %Y:") %></strong><br>
+<%= @comment.body %> <%= link_to "(edit)", edit_post_comment_path(@post.id, @comment) if @comment.user.id == current_user.id %></p>
