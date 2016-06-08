@@ -2,21 +2,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :find_shifts, only: [:index, :show, :edit]
+  respond_to :html, :js, :json
   
   def index
     @users = User.all
     @best_users = User.best_users
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @users }
-    end
+    respond_with @users
   end
 
   def show
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @user }
-    end
+    respond_with @user
   end
 
   def edit
