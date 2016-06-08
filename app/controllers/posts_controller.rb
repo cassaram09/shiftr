@@ -1,12 +1,10 @@
 class PostsController < ApplicationController
+  respond_to :html, :json, :js
 
   def index
     @posts = Post.all
     @users = User.all
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @posts }
-    end
+    respond_with @posts
   end
 
   def new
@@ -17,10 +15,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      respond_to do |format|
-        format.html { render :show }
-        format.json { render json: @post }
-      end
+      respond_with @post
     else
       render 'new'
     end
@@ -28,10 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @post }
-    end
+    respond_with @post
   end
 
   def edit
