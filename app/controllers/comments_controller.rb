@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def index
     @post = Post.find(params[:post_id])
     @comments = @post.comments
-    # render layout: false
+    render layout: false
   end
 
   # def new
