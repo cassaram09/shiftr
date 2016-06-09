@@ -11,4 +11,7 @@ Tags:
 
 <%= link_to "Load Comments", post_comments_path(@post.id), id: "load_comments", remote: true %>
 
+<div id="comments">
+</div>
+
 <p><%= link_to "Add Comment", new_post_comment_path(@post.id) %></p>
