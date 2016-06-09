@@ -14,4 +14,4 @@ Tags:
 <div id="comments">
 </div>
 
-<p><%= link_to "Add Comment", new_post_comment_path(@post.id) %></p>
+<p><%= link_to "Add Comment", new_post_comment_path(@post.id), remote: true %></p>
