@@ -9,7 +9,7 @@ Tags:
   <%= link_to "#{tag.name}", tag_path(tag) %>
 <% end %><br><br>
 
-<%= link_to "Load Comments", post_comments_path(@post.id), id: "load_comments", remote: true %>
+<%= link_to "Comments", post_comments_path(@post.id), id: "load_comments", remote: true %>
 
 <div id="comments">
 </div>
