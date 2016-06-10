@@ -32,16 +32,23 @@ $(function() {
         //     url: action,
         //     data: params,
         //     success: function(response){
-        //         $('#comment_body').val('')
-        //         $('div#comments').append(response)
+                // $('#comment_body').val('')
+                // $('div#comments').append(response)
         //     }
         // });
 
-        $.post(action, params).success(function(json) {
-            console.log(json)
+        $.ajax({
+            url: action, 
+            data: params,
+            dataType: 'json',
+            method: 'POST'
+        }).success(function(json) {
+            var comment = json.comment
+            $('#comment_body').val('')
+            $('div#comments').append("<p>" + comment.body + "</p>")
         }).error(function(response) {
             console.log("You broke it!")
-        })
+        });
 
 
         
