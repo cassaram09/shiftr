@@ -13,20 +13,20 @@ $(function() {
 
 $(function() {
     $('form#new_comment').on('submit', function(e) {
-        url = this.action
-        data = {
-            'authenticity_token': $("input[name='authenticity_token']").val(),
-            'comment': {
-                'body': $('#comment_body').val()
-            }
-        }
+        // data = {
+        //     'authenticity_token': $("input[name='authenticity_token']").val(),
+        //     'comment': {
+        //         'body': $('#comment_body').val()
+        //     }
+        // }
 
         $.ajax({
-            type: 'POST',
-            url: url,
-            data: data,
+            type: ($("input[name='_method']").val() || this.method),
+            url: this.action,
+            data: $(this).serialize(),
             success: function(response){
-                debugger
+                $('#comment_body').val('')
+                $('div#comments').append(response)
             }
         });
 
