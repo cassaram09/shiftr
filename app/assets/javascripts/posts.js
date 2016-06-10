@@ -1,3 +1,10 @@
+function Comment(attributes) {
+    this.body = attributes.body;
+    this.id = attributes.id;
+    this.user_id = attributes.user_id;
+    this.post_id = attributes.post_id;
+}
+
 $(function() {
   $('a#load_comments').on('click', function(e){
 
