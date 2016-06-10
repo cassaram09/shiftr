@@ -13,17 +13,18 @@ $(function() {
 
 $(function() {
     $('form#new_comment').on('submit', function(e) {
-        // data = {
-        //     'authenticity_token': $("input[name='authenticity_token']").val(),
-        //     'comment': {
-        //         'body': $('#comment_body').val()
-        //     }
-        // }
+        data = {
+            'authenticity_token': $("input[name='authenticity_token']").val(),
+            'comment': {
+                'body': $('#comment_body').val(),
+                'user_id': $('#comment_user_id').val()
+            }
+        }
 
         $.ajax({
             type: ($("input[name='_method']").val() || this.method),
             url: this.action,
-            data: $(this).serialize(),
+            data: data,
             success: function(response){
                 $('#comment_body').val('')
                 $('div#comments').append(response)
