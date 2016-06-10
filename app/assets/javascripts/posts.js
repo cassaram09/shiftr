@@ -22,21 +22,28 @@ $(function() {
         //         'user_id': $('#comment_user_id').val()
         //     }
         // }
-
+        e.preventDefault();
         var $form = $(this);
         var action = $form.attr('action')
         var params = $form.serialize()
 
-        $.ajax({
-            type: ($("input[name='_method']").val() || this.method),
-            url: action,
-            data: params,
-            success: function(response){
-                $('#comment_body').val('')
-                $('div#comments').append(response)
-            }
-        });
+        // $.ajax({
+        //     type: ($("input[name='_method']").val() || this.method),
+        //     url: action,
+        //     data: params,
+        //     success: function(response){
+        //         $('#comment_body').val('')
+        //         $('div#comments').append(response)
+        //     }
+        // });
 
-        e.preventDefault();
+        $.post(action, params).success(function(json) {
+            console.log(json)
+        }).error(function(response) {
+            console.log("You broke it!")
+        })
+
+
+        
     })
 })
