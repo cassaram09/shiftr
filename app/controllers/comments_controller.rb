@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     if @comment.save
-      redirect_to @post
+      render 'comments/show', layout: false
     else
       render 'posts/show'
     end
