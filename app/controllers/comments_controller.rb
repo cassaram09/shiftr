@@ -16,7 +16,11 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     if @comment.save
-      render 'comments/show', layout: false
+      respond_to do |f|
+        f.html { redirect_to @comment }
+        f.json { render json: @comment }
+      end
+      # render 'comments/show', layout: false
     else
       render 'posts/show'
     end
