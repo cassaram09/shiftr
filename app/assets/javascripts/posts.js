@@ -1,9 +1,11 @@
 $(function() {
   $('a#load_comments').on('click', function(e){
 
+    $('a#load_comments').hide().after("<u><strong>Comments</strong></u>");
+    
     $.get(this.href).success(function(json){
       json.comments.forEach(function(comment) {
-        $('div#comments').append("<p>" + "<strong>" + comment.body + "</strong>" + "<p>");
+        $('div#comments').append("<p>" + comment.body + "<p>");
       })
     })
 
