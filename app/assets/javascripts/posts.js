@@ -15,18 +15,22 @@ $(function() {
 
 $(function() {
     $('form#new_comment').on('submit', function(e) {
-        data = {
-            'authenticity_token': $("input[name='authenticity_token']").val(),
-            'comment': {
-                'body': $('#comment_body').val(),
-                'user_id': $('#comment_user_id').val()
-            }
-        }
+        // data = {
+        //     'authenticity_token': $("input[name='authenticity_token']").val(),
+        //     'comment': {
+        //         'body': $('#comment_body').val(),
+        //         'user_id': $('#comment_user_id').val()
+        //     }
+        // }
+
+        var $form = $(this);
+        var action = $form.attr('action')
+        var params = $form.serialize()
 
         $.ajax({
             type: ($("input[name='_method']").val() || this.method),
-            url: this.action,
-            data: data,
+            url: action,
+            data: params,
             success: function(response){
                 $('#comment_body').val('')
                 $('div#comments').append(response)
