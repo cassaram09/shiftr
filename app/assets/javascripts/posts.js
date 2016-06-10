@@ -6,6 +6,17 @@ function Comment(attributes) {
 }
 
 $(function() {
+    Comment.templateSource = $('#entry-template').serialize();
+    debugger // something is wrong with $('#entry-template'). is it getting to show.html.erb?
+    Comment.template = Handlebars.compile(Comment.templateSource);
+    Comment.template({body: "new comment"})
+})
+
+Comment.prototype.renderP = function() {
+    return Comment.template(this);
+}
+
+$(function() {
   $('a#load_comments').on('click', function(e){
 
     $('a#load_comments').hide().after("<u><strong>Comments</strong></u>");
@@ -50,9 +61,11 @@ $(function() {
             dataType: 'json',
             method: 'POST'
         }).success(function(json) {
-            var comment = json.comment
-            $('#comment_body').val('')
-            $('div#comments').append("<p>" + comment.body + "</p>")
+            var comment = new Comment(json.comment);
+            var commentP = comment.renderP();
+            // var comment = json.comment
+            // $('#comment_body').val('')
+            // $('div#comments').append("<p>" + comment.body + "</p>")
         }).error(function(response) {
             console.log("You broke it!")
         });
