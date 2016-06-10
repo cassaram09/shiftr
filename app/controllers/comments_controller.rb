@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     if @comment.save
       redirect_to @post
