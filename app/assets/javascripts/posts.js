@@ -17,6 +17,8 @@ $(function() {
       success: function(response) {
         var $div = $('div#comments')
         $div.append(response);
+
+        $('#comment_body').val('');
       }
     })
   })
