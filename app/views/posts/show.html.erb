@@ -11,11 +11,11 @@ Tags:
 
 <h3>Comments</h3>
 
-<% @post.comments.each do |comment| %>
-  <p>
-    <%= comment.body %>
-  </p>
-<% end %>
+<ol>
+  <% @post.comments.each do |comment| %>
+      <li><%= comment.body %></li>
+  <% end %>
+</ol>
 
 <%= form_for [@post, @comment] do |f| %>
   
