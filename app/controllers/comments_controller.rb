@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     # @comment = Comment.new(comment_params)
     # @comment.save
     # redirect_to posts_path
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     if @comment.save
       redirect_to @post
