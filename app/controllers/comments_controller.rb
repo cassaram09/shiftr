@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     if @comment.save
       respond_to do |f|
-        f.html {redirect_to @comment}
+        f.html {redirect_to @post}
         f.json {render json: @comment}
       end
     else
