@@ -1,23 +1,14 @@
 $(function() {
   $('#new_comment').on('submit', function(e) {
     e.preventDefault();
-    url = this.action
-
-    data = {
-      'authenticity_token': $("input[name='authenticity_token']").val(),
-      'comment': {
-        'body': $('#comment_body').val()
-      }
-    }
 
     $.ajax({
-      type: "POST",
-      url: url,
-      data: data,
+      type: ($("input[name='_method']").val() || this.method),
+      url: this.action,
+      data: $(this).serialize(),
       success: function(response) {
         var $div = $('div#comments')
         $div.append(response);
-
         $('#comment_body').val('');
       }
     })
