@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def index
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments.all
+  end
+
   def new
     @post = Post.find(params[:post_id])
     @comment = Comment.new
@@ -24,7 +29,7 @@ class CommentsController < ApplicationController
     # JSON
     if @comment.save
       respond_to do |f|
-        f.html {redirect_to posts_path}
+        f.html {redirect_to @posts}
         f.json {render json: @post}
       end
     else

@@ -16,7 +16,12 @@ $(function() {
     var action = this.action;
     var params = $(this).serialize();
 
-    $.post(action, params).success(function(json) {
+    $.ajax({
+      url: action,
+      data: params,
+      dataType: "json"
+    })
+    .success(function(json) {
       debugger
       console.log(json)
     }).error(function(response) {
