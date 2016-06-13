@@ -13,7 +13,7 @@ $(function() {
     //     $('#comment_body').val('');
     //   }
     // })
-    var action = this.action;
+    var action = $(this).action;
     var params = $(this).serialize();
 
     $.ajax({
@@ -22,7 +22,6 @@ $(function() {
       dataType: "json"
     })
     .success(function(json) {
-      debugger
       console.log(json)
     }).error(function(response) {
       console.log("Oops", response)
