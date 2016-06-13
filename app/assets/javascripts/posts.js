@@ -1,6 +1,6 @@
 $(function() {
   $('#new_comment').on('submit', function(e) {
-
+    e.preventDefault();
     url = this.action
 
     data = {
@@ -15,7 +15,8 @@ $(function() {
       url: url,
       data: data,
       success: function(response) {
-        debugger
+        var $div = $('div#comments')
+        $div.append(response);
       }
     })
   })
