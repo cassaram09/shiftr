@@ -27,3 +27,14 @@ $(function() {
     })
   })
 });
+
+$(function() {
+  $('a#load_comments').on('click', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: this.href
+    }).success(function(response){
+      $('div.comments').html(response)
+    })
+  })
+});
