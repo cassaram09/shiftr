@@ -9,13 +9,28 @@ class CommentsController < ApplicationController
     # @comment = Comment.new(comment_params)
     # @comment.save
     # redirect_to posts_path
+
+
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
+    
+    # AJAX
+    # if @comment.save
+    #   render 'comments/show', layout: false
+    # else
+    #   render 'posts/show'
+    # end
+
+    # JSON
     if @comment.save
-      render 'comments/show', layout: false
+      respond_to do |f|
+        f.html {redirect_to posts_path}
+        f.json {render json: @post}
+      end
     else
       render 'posts/show'
     end
+
   end
 
   # def show
