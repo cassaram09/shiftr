@@ -19,7 +19,8 @@ $(function() {
     $.ajax({
       url: action,
       data: params,
-      dataType: "json"
+      dataType: 'json',
+      method: 'POST'
     })
     .success(function(json) {
       console.log(json)
