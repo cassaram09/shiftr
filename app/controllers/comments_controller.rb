@@ -11,11 +11,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # @comment = Comment.new(comment_params)
-    # @comment.save
-    # redirect_to posts_path
-
-
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     
@@ -26,11 +21,11 @@ class CommentsController < ApplicationController
     #   render 'posts/show'
     # end
 
-    # JSON
+    # # JSON
     if @comment.save
       respond_to do |f|
-        f.html {redirect_to @posts}
-        f.json {render json: @post}
+        f.html {redirect_to @comment}
+        f.json {render json: @comment}
       end
     else
       render 'posts/show'
