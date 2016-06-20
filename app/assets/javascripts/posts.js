@@ -17,11 +17,10 @@ $(function() {
       dataType: 'json',
       data: $(this).serialize(),
       success: function(json) {
-        comment = json.comment
-        response = new Comment(comment.id, comment.body)
-        var comment = json.comment;
+        var comment = json.comment
+        var response = new Comment(comment.id, comment.body)
         var $div = $('div#comments');
-        $div.append("<p>" + response.formatter() + "<p>");
+        $div.append("<p>" + response.formatter() + "</p>");
         $('#comment_body').val('');
       }
     })
